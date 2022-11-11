@@ -10,11 +10,11 @@ import { BoardModeratorComponent } from './protected/board-moderator/board-moder
 import { BoardAdminComponent } from './protected/board-admin/board-admin.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  //{ path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  
-  {path:'protected',loadChildren:()=>import('./protected/protected.module').then((m) => m.ProtectedModule),},
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+  // {path:'protected',loadChildren:()=>import('./protected/protected.module').then((m) => m.ProtectedModule),},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
