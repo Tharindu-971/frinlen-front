@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
+import { CreateInvoiceComponent } from './invoice/create-invoice/create-invoice.component';
+import { InvoiceComponent } from './invoice/invoice.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectedComponent } from './protected.component';
 import { RegisterComponent } from './register/register.component';
@@ -17,6 +19,11 @@ const routes: Routes = [
       { path: 'user', component: BoardUserComponent },
       { path: 'mod', component: BoardModeratorComponent },
       { path: 'admin', component: BoardAdminComponent },
+      {
+        path: 'invoice',
+        component: InvoiceComponent,
+        children: [{ path: 'create', component: CreateInvoiceComponent }],
+      },
     ],
   },
 ];

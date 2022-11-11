@@ -10,6 +10,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { CreateInvoiceComponent } from './invoice/create-invoice/create-invoice.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
     BoardModeratorComponent,
     BoardUserComponent,
     InvoiceComponent,
+    CreateInvoiceComponent,
   ],
   imports: [CommonModule, ProtectedRoutingModule],
 })
