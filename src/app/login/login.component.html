@@ -91,7 +91,7 @@
                 <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                   <div class="mb-3">
                     <label class="mb-1"><strong>Email</strong></label>
-                    <input name="username" [(ngModel)]="form.username" required #username="ngModel" type="email"
+                    <input name="email" [(ngModel)]="form.email" required #username="ngModel" type="email"
                       class="form-control" value="hello@example.com">
                   </div>
                   <div class="mb-3">

@@ -11,6 +11,16 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardUserComponent } from './board-user/board-user.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CreateInvoiceComponent } from './invoice/create-invoice/create-invoice.component';
+import { ListInvoiceComponent } from './invoice/list-invoice/list-invoice.component';
+import { FormsModule } from '@angular/forms';
+import { StockComponent } from './stock/stock.component';
+import { CreateStockComponent } from './stock/create-stock/create-stock.component';
+import { ListStockComponent } from './stock/list-stock/list-stock.component';
+import { ApprovalComponent } from './approval/approval.component';
+import { ListApprovalComponent } from './approval/list-approval/list-approval.component';
+import { ApproveComponent } from './approval/approve/approve.component';
+import { DetailInvoiceComponent } from './invoice/detail-invoice/detail-invoice.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +33,16 @@ import { CreateInvoiceComponent } from './invoice/create-invoice/create-invoice.
     BoardUserComponent,
     InvoiceComponent,
     CreateInvoiceComponent,
+    ListInvoiceComponent,
+    StockComponent,
+    CreateStockComponent,
+    ListStockComponent,
+    ApprovalComponent,
+    ListApprovalComponent,
+    ApproveComponent,
+    DetailInvoiceComponent,
+    DashboardComponent,
   ],
-  imports: [CommonModule, ProtectedRoutingModule],
+  imports: [CommonModule, ProtectedRoutingModule, FormsModule],
 })
 export class ProtectedModule {}

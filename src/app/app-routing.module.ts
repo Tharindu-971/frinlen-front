@@ -13,7 +13,11 @@ const routes: Routes = [
   //{ path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
 
-  // {path:'protected',loadChildren:()=>import('./protected/protected.module').then((m) => m.ProtectedModule),},
+  {
+    path: 'protected',
+    loadChildren: () =>
+      import('./protected/protected.module').then((m) => m.ProtectedModule),
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
