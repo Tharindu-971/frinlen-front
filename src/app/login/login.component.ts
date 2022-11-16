@@ -34,23 +34,24 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     const { email, password } = this.form;
 
-    this.authService.login(email, password).subscribe({
-      next: (data) => {
-        this.tokenStorage.saveToken(data.token);
-        this.tokenStorage.saveUser(data);
+    // this.authService.login(email, password).subscribe({
+    //   next: (data) => {
+    //     this.tokenStorage.saveToken(data.token);
+    //     this.tokenStorage.saveUser(data);
 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['/protected/dashboard']);
-        //this.reloadPage();
-      },
-      error: (err) => {
-        console.log(err);
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      },
-    });
+    //     this.isLoginFailed = false;
+    //     this.isLoggedIn = true;
+    //     this.roles = this.tokenStorage.getUser().roles;
+    //     this.router.navigate(['/protected/dashboard']);
+    //     //this.reloadPage();
+    //   },
+    //   error: (err) => {
+    //     console.log(err);
+    //     this.errorMessage = err.error.message;
+    //     this.isLoginFailed = true;
+    //   },
+    // });
+    this.router.navigate(['/protected/dashboard']);
   }
 
   reloadPage(): void {
