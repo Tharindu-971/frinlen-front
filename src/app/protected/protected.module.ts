@@ -12,7 +12,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CreateInvoiceComponent } from './invoice/create-invoice/create-invoice.component';
 import { ListInvoiceComponent } from './invoice/list-invoice/list-invoice.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StockComponent } from './stock/stock.component';
 import { CreateStockComponent } from './stock/create-stock/create-stock.component';
 import { ListStockComponent } from './stock/list-stock/list-stock.component';
@@ -43,6 +43,11 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
     DetailInvoiceComponent,
     DashboardComponent,
   ],
-  imports: [CommonModule, ProtectedRoutingModule, FormsModule],
+  imports: [
+    CommonModule,
+    ProtectedRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class ProtectedModule {}

@@ -125,11 +125,12 @@
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <h4 class="mb-3">Billing address</h4>
-                    <form class="needs-validation" novalidate="">
+                    <form [formGroup]="customerDetails" (ngSubmit)="onSubmit()" class="needs-validation" novalidate="">
                         <div class="mb-3">
                             <label for="username" class="form-label">Mobile</label>
                             <div class="input-group">
-                                <input type="number" class="form-control" placeholder="Mobile" required="">
+                                <input type="number" class="form-control" fromControlName="mobile" placeholder="Mobile"
+                                    required="">
                                 <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
                                     <div *ngIf="mobile.errors?.['required']" class="invalid-feedback"
                                         style="width: 100%;">
@@ -141,8 +142,8 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Name" value=""
-                                    required="">
+                                <input type="text" formControlName="name" class="form-control" id="name"
+                                    placeholder="Name" value="" required="">
                                 <div *ngIf="name.invalid && (name.dirty || name.touched)">
                                     <div *ngIf="name.errors?.['required']" class="invalid-feedback">
                                         Name is required
@@ -151,8 +152,8 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="name" placeholder="Email" value=""
-                                    required="">
+                                <input type="email" formControlName="email" class="form-control" id="name"
+                                    placeholder="Email" value="" required="">
                                 <div *ngIf="email.invalid && (email.dirty || email.touched)">
                                     <div *ngIf="name.errors?.['required']" class="invalid-feedback">
                                         Email is required
@@ -163,22 +164,20 @@
                                 </div>
                             </div>
 
-
-
-
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="1234 Main St"
-                                    required="">
+                                <input type="text" formControlName="address1" class="form-control" id="address"
+                                    placeholder="1234 Main St" required="">
                                 <div class="invalid-feedback">
-                                    Please enter your shipping address.
+                                    Please enter your address.
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="address2" class="form-label">Address 2 <span
                                         class="text-muted">(Optional)</span></label>
-                                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                                <input type="text" formControlName="address2" class="form-control" id="address2"
+                                    placeholder="Apartment or suite">
                             </div>
 
                             <hr class="mb-4">
@@ -189,24 +188,27 @@
                                     <label class="form-check-label" for="credit">Standalone Customer</label>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" formGroupName="agent">
                                 <div class="col-md-6 mb-3">
                                     <label for="cc-name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+                                    <input type="text" formControlName="name" class="form-control" id="cc-name"
+                                        placeholder="" required="">
                                     <div class="invalid-feedback">
                                         Name is required
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="cc-number" class="form-label">Mobile</label>
-                                    <input type="number" class="form-control" id="cc-number" placeholder="" required="">
+                                    <input type="number" formControlName="mobile" class="form-control" id="cc-number"
+                                        placeholder="" required="">
                                     <div class="invalid-feedback">
                                         Mobile number is required
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="cc-number" class="form-label">Email</label>
-                                    <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+                                    <input type="text" formControlName="email" class="form-control" id="cc-number"
+                                        placeholder="" required="">
                                     <div class="invalid-feedback">
                                         Credit card number is required
                                     </div>
@@ -268,9 +270,9 @@
                                 </div>
                             </div>
                             <hr class="mb-4">
-                            <a class="btn btn-primary btn-lg btn-block" routerLink="/protected/invoice/view"
-                                type="submit">Continue to
-                                checkout</a>
+                            <button type="button" class="btn btn-primary btn-lg btn-block"
+                                routerLink="/protected/invoice/view">Continue to
+                                checkout</button>
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { map } from 'rxjs';
 import { Invoice } from '../../_models/invoice.model';
 import { Product } from '../../_models/product.model';
@@ -34,12 +39,16 @@ export class CreateInvoiceComponent implements OnInit {
     cart: this.initProducts,
   };
 
-  constructor(private invoiceService: InvoiceService) {}
+  constructor(
+    private invoiceService: InvoiceService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.getAllProducts();
     this.getCartFromSubject();
     this.getInvoiceFromSubject();
+    this.initForm();
   }
 
   getAllProducts() {
@@ -56,7 +65,7 @@ export class CreateInvoiceComponent implements OnInit {
   }
 
   initForm() {
-    this.customerDetails = new FormGroup({
+    this.customerDetails = this.fb.group({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       mobile: new FormControl('', {
@@ -66,6 +75,19 @@ export class CreateInvoiceComponent implements OnInit {
           Validators.minLength(10),
           Validators.maxLength(10),
         ],
+      }),
+      address1: new FormControl(''),
+      address2: new FormControl(''),
+
+      agent: new FormGroup({
+        name: new FormControl('', [Validators.required]),
+        mobile: new FormControl('', [
+          Validators.required,
+          Validators.pattern('^[0-9]+'),
+          Validators.minLength(10),
+          Validators.maxLength(10),
+        ]),
+        email: new FormControl('', Validators.required),
       }),
     });
   }
@@ -79,7 +101,24 @@ export class CreateInvoiceComponent implements OnInit {
   get email() {
     return this.customerDetails.get('email');
   }
-  ge;
+
+  get address1() {
+    return this.customerDetails.get('address1');
+  }
+  get address2() {
+    return this.customerDetails.get('address2');
+  }
+  get agentName() {
+    return this.customerDetails.get('agent.name');
+  }
+
+  get agentEmail() {
+    return this.customerDetails.get('agent.email');
+  }
+
+  get agentMobile() {
+    return this.customerDetails.get('agent.mobile');
+  }
 
   getInvoiceFromSubject() {
     this.invoiceService.invoiceSubject$.subscribe(
@@ -135,4 +174,8 @@ export class CreateInvoiceComponent implements OnInit {
   }
 
   addTax(initInvoice, value: string) {}
+
+  onSubmit() {
+    console.log('form value  : ', this.customerDetails.value);
+  }
 }
