@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://finnlan.herokuapp.com',
+  apiUrl: 'https://finnland-api.techscrolll.net',
 };
