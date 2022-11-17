@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Agent } from '../../_models/agent.model';
+import { Customer } from '../../_models/customer.model';
 import { Invoice } from '../../_models/invoice.model';
 import { Product } from '../../_models/product.model';
 
@@ -13,6 +17,19 @@ const PRODUCT_API = `${environment.apiUrl}/inventories`;
 export class InvoiceService {
   initProducts: Product[] = [];
   currentCart: Product[] = [];
+
+  agentInit: Agent = {
+    name: '',
+    email: '',
+    mobile: '',
+  };
+
+  customerInit: Customer = {
+    name: '',
+    mobile: '',
+    email: '',
+    agent: this.agentInit,
+  };
 
   initCart: Product = {
     id: 0,
@@ -39,6 +56,7 @@ export class InvoiceService {
     isActive: true,
     reason: '',
     cart: this.initProducts,
+    customer: this.customerInit,
   };
 
   currentInvoice: Invoice = {
@@ -54,6 +72,7 @@ export class InvoiceService {
     isActive: true,
     reason: '',
     cart: this.initProducts,
+    customer: this.customerInit,
   };
 
   productSubject$ = new BehaviorSubject(this.initProducts);
@@ -66,6 +85,8 @@ export class InvoiceService {
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(PRODUCT_API);
   }
+
+  generateInvoiceId() {}
 
   removeProduct(id: number) {
     const existingProduct = this.currentCart.find((data) => data.id == id);
@@ -122,5 +143,23 @@ export class InvoiceService {
 
     console.log('invoice : ', invoice);
     this.invoiceSubject$.next(invoice);
+  }
+
+  createAgent(value: FormGroup): Observable<any> {
+    const agent: Agent = {
+      email: value.value.agentEmail,
+      mobile: value.value.agentMobile,
+      name: value.value.agentName,
+    };
+
+    this.customerInit.agent = agent;
+    this.customerInit.mobile = value.value.mobile;
+    this.customerInit.name = value.value.name;
+    this.customerInit.email = value.value.email;
+
+    this.invoiceSubject$.subscribe((data) => (this.currentInvoice = data));
+    this.currentInvoice.customer = this.customerInit;
+
+    return this.http.post<any>(`${PRODUCT_API}/agent`, value.value);
   }
 }

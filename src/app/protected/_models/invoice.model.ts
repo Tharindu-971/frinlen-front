@@ -1,3 +1,4 @@
+import { Customer } from './customer.model';
 import { Product } from './product.model';
 
 export interface Invoice {
@@ -13,4 +14,5 @@ export interface Invoice {
   reason: string;
   isActive: boolean;
   cart: Product[];
+  customer:Customer
 }

@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { map } from 'rxjs';
+import { Router } from '@angular/router';
+import { ConnectableObservable, map } from 'rxjs';
+import { Customer } from '../../_models/customer.model';
 import { Invoice } from '../../_models/invoice.model';
 import { Product } from '../../_models/product.model';
 import { InvoiceService } from '../../_services/invoice/invoice.service';
@@ -18,11 +21,20 @@ import { InvoiceService } from '../../_services/invoice/invoice.service';
 export class CreateInvoiceComponent implements OnInit {
   products: Product[] = [];
   cart: Product[] = [];
+  showAgent: boolean = false;
   search: string = '';
+  isCash: boolean = false;
+  isCredit: boolean = false;
+  isCheque: boolean = false;
 
   customerDetails: FormGroup;
 
   initProducts: Product[] = [];
+  initCustomer: Customer = {
+    name: '',
+    email: '',
+    mobile: '',
+  };
 
   initInvoice: Invoice = {
     total: 0,
@@ -37,11 +49,13 @@ export class CreateInvoiceComponent implements OnInit {
     isActive: true,
     reason: '',
     cart: this.initProducts,
+    customer: this.initCustomer,
   };
 
   constructor(
     private invoiceService: InvoiceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +63,10 @@ export class CreateInvoiceComponent implements OnInit {
     this.getCartFromSubject();
     this.getInvoiceFromSubject();
     this.initForm();
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.customerDetails.controls;
   }
 
   getAllProducts() {
@@ -78,17 +96,36 @@ export class CreateInvoiceComponent implements OnInit {
       }),
       address1: new FormControl(''),
       address2: new FormControl(''),
+      isStandAlone: new FormControl(true),
 
-      agent: new FormGroup({
-        name: new FormControl('', [Validators.required]),
-        mobile: new FormControl('', [
-          Validators.required,
-          Validators.pattern('^[0-9]+'),
-          Validators.minLength(10),
-          Validators.maxLength(10),
-        ]),
-        email: new FormControl('', Validators.required),
-      }),
+      agentName: new FormControl('', [Validators.required]),
+      agentMobile: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]+'),
+        Validators.minLength(10),
+        Validators.maxLength(10),
+      ]),
+      agentEmail: new FormControl('', [Validators.required, Validators.email]),
+      paymentMethod: new FormControl(''),
+      chequeNumber: new FormControl(0),
+      paymentAmount: new FormControl(0, Validators.pattern('^[0-9]+')),
+      balance: new FormControl(0),
+    });
+    this.customerDetails.valueChanges.subscribe((data) => {
+      data.isStandAlone ? (this.showAgent = false) : (this.showAgent = true);
+      if (data.paymentMethod == 'cash') {
+        this.isCash = true;
+        this.isCredit = false;
+        this.isCheque = false;
+      } else if (data.paymentMethod == 'credit') {
+        this.isCash = false;
+        this.isCredit = true;
+        this.isCheque = false;
+      } else if (data.paymentMethod == 'cheque') {
+        this.isCheque = true;
+        this.isCash = false;
+        this.isCredit = false;
+      }
     });
   }
 
@@ -108,17 +145,17 @@ export class CreateInvoiceComponent implements OnInit {
   get address2() {
     return this.customerDetails.get('address2');
   }
-  get agentName() {
-    return this.customerDetails.get('agent.name');
-  }
+  // get agentName() {
+  //   return this.customerDetails.get('agent.name');
+  // }
 
-  get agentEmail() {
-    return this.customerDetails.get('agent.email');
-  }
+  // get agentEmail() {
+  //   return this.customerDetails.get('agent.email');
+  // }
 
-  get agentMobile() {
-    return this.customerDetails.get('agent.mobile');
-  }
+  // get agentMobile() {
+  //   return this.customerDetails.get('agent.mobile');
+  // }
 
   getInvoiceFromSubject() {
     this.invoiceService.invoiceSubject$.subscribe(
@@ -173,9 +210,15 @@ export class CreateInvoiceComponent implements OnInit {
     this.invoiceService.removeProduct(id);
   }
 
-  addTax(initInvoice, value: string) {}
+  addTax(initInvoice: Invoice, value: string) {}
 
   onSubmit() {
+    console.log('heelo');
     console.log('form value  : ', this.customerDetails.value);
+    this.invoiceService
+      .createAgent(this.customerDetails)
+      .subscribe((data) => console.log(data));
+
+    this.router.navigate(['/protected/invoice/view']);
   }
 }
