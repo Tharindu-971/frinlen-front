@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { CreateStockComponent } from './stock/create-stock/create-stock.component';
 import { ListStockComponent } from './stock/list-stock/list-stock.component';
 import { StockComponent } from './stock/stock.component';
+import { AuthGuard } from './_helpers/guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'invoice',
         component: InvoiceComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['ROLE_ADMIN', 'ROLE_USER'],
+        },
         children: [
           { path: 'create', component: CreateInvoiceComponent },
           { path: 'view', component: DetailInvoiceComponent },
@@ -48,6 +53,10 @@ const routes: Routes = [
       {
         path: 'approval',
         component: ApprovalComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['ROLE_ADMIN'],
+        },
         children: [
           { path: 'approve', component: ApproveComponent },
           { path: 'list', component: ListApprovalComponent },

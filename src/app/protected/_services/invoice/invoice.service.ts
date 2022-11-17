@@ -10,6 +10,7 @@ import { Invoice } from '../../_models/invoice.model';
 import { Product } from '../../_models/product.model';
 
 const PRODUCT_API = `${environment.apiUrl}/inventories`;
+const INVOICE_API = `${environment.apiUrl}/invoices`;
 
 @Injectable({
   providedIn: 'root',
@@ -160,6 +161,6 @@ export class InvoiceService {
     this.invoiceSubject$.subscribe((data) => (this.currentInvoice = data));
     this.currentInvoice.customer = this.customerInit;
 
-    return this.http.post<any>(`${PRODUCT_API}/agent`, value.value);
+    return this.http.post<any>(`${INVOICE_API}/agent`, value.value);
   }
 }

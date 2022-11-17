@@ -15,11 +15,9 @@
                 </div>
                 <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12">
                     <h6>To:</h6>
-                    <!-- <div> <strong>Bob Mart</strong> </div>
-                    <div>Attn: Daniel Marek</div>
-                    <div>43-190 Mikolow, Poland</div>
-                    <div>Email: marek@daniel.com</div>
-                    <div>Phone: +48 123 456 789</div> -->
+                    <div> <strong>{{initInvoice.customer.name}}</strong> </div>
+                    <div>Email: {{initInvoice.customer.email}}</div>
+                    <div>Phone: {{initInvoice.customer.mobile}}</div>
                 </div>
                 <div
                     class="mt-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-lg-end justify-content-md-center justify-content-xs-start">
@@ -45,45 +43,19 @@
                         <tr>
                             <th class="center">#</th>
                             <th>Item</th>
-                            <th>Description</th>
                             <th class="right">Unit Cost</th>
                             <th class="center">Qty</th>
                             <th class="right">Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <tr>
-                            <td class="center">1</td>
-                            <td class="left strong">Origin License</td>
-                            <td class="left">Extended License</td>
-                            <td class="right">LKR 999,00</td>
-                            <td class="center">1</td>
-                            <td class="right">LKR 999,00</td>
+                        <tr *ngFor="let cart of initInvoice.cart;let i=index ">
+                            <td class="center">{{i+1}}</td>
+                            <td class="left strong">{{cart.name}}</td>
+                            <td class="right">LKR {{cart.sellingPrice}}</td>
+                            <td class="center">{{cart.quantity}}</td>
+                            <td class="right">LKR {{cart.sellingPrice*cart.quantity}}</td>
                         </tr>
-                        <tr>
-                            <td class="center">2</td>
-                            <td class="left">Custom Services</td>
-                            <td class="left">Instalation and Customization (cost per hour)</td>
-                            <td class="right">LKR 150,00</td>
-                            <td class="center">20</td>
-                            <td class="right">LKR 3.000,00</td>
-                        </tr>
-                        <tr>
-                            <td class="center">3</td>
-                            <td class="left">Hosting</td>
-                            <td class="left">1 year subcription</td>
-                            <td class="right">LKR 499,00</td>
-                            <td class="center">1</td>
-                            <td class="right">LKR 499,00</td>
-                        </tr>
-                        <tr>
-                            <td class="center">4</td>
-                            <td class="left">Platinum Support</td>
-                            <td class="left">1 year subcription 24/7</td>
-                            <td class="right">LKR 3.999,00</td>
-                            <td class="center">1</td>
-                            <td class="right">LKR 3.999,00</td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -92,26 +64,36 @@
                 <div class="col-lg-4 col-sm-5 ms-auto">
                     <table class="table table-clear">
                         <tbody>
-                            <!-- <tr>
+                            <tr>
                                 <td class="left"><strong>Subtotal</strong></td>
-                                <td class="right">LKR 8.497,00</td>
+                                <td class="right">LKR {{initInvoice.subtotal}}</td>
                             </tr>
                             <tr>
-                                <td class="left"><strong>Discount (20%)</strong></td>
-                                <td class="right">LKR 1,699,40</td>
+                                <td class="left"><strong>Discount ({{initInvoice.discount}}%)</strong></td>
+                                <td class="right">LKR {{initInvoice.discountAmount}}</td>
                             </tr>
                             <tr>
-                                <td class="left"><strong>VAT (10%)</strong></td>
-                                <td class="right">LKR 679,76</td>
+                                <td class="left"><strong>VAT ({{initInvoice.tax}}%)</strong></td>
+                                <td class="right">LKR {{initInvoice.taxAmount}}</td>
                             </tr>
                             <tr>
                                 <td class="left"><strong>Total</strong></td>
-                                <td class="right"><strong>LKR 7.477,36</strong><br>
+                                <td class="right"><strong>LKR {{initInvoice.total}}</strong><br>
 
                                 </td>
-                            </tr> -->
+                            </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="btn-group d-flex align-items-end">
+                                <button type="button" class="btn  btn-primary btn-lg btn-block">Submit</button>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

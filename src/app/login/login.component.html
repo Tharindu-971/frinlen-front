@@ -88,7 +88,7 @@
                   <a href="index.html"><img src="images/logo-full.png" alt=""></a>
                 </div>
                 <h4 class="text-center mb-4">Sign in your account</h4>
-                <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                   <div class="mb-3">
                     <label class="mb-1"><strong>Email</strong></label>
                     <input name="email" [(ngModel)]="form.email" required #username="ngModel" type="email"
