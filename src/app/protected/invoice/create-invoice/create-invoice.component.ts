@@ -11,6 +11,7 @@ import { ConnectableObservable, map } from 'rxjs';
 import { Customer } from '../../_models/customer.model';
 import { Invoice } from '../../_models/invoice.model';
 import { Product } from '../../_models/product.model';
+import { CustomerService } from '../../_services/customer/customer.service';
 import { InvoiceService } from '../../_services/invoice/invoice.service';
 
 @Component({
@@ -21,6 +22,8 @@ import { InvoiceService } from '../../_services/invoice/invoice.service';
 export class CreateInvoiceComponent implements OnInit {
   products: Product[] = [];
   cart: Product[] = [];
+  customers: Customer[] = [];
+  searchCustomers: Customer[] = [];
   showAgent: boolean = false;
   search: string = '';
   isCash: boolean = false;
@@ -34,12 +37,13 @@ export class CreateInvoiceComponent implements OnInit {
     name: '',
     email: '',
     mobile: '',
+    address1: '',
   };
 
   initInvoice: Invoice = {
     total: 0,
     subtotal: 0,
-    number: '',
+    number: 0,
     tax: 0,
     discount: 0,
     isApproved: false,
@@ -55,13 +59,16 @@ export class CreateInvoiceComponent implements OnInit {
   constructor(
     private invoiceService: InvoiceService,
     private fb: FormBuilder,
+    private customerService: CustomerService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getAllProducts();
+    this.getAllCustomers();
     this.getCartFromSubject();
     this.getInvoiceFromSubject();
+    this.getCustomersFromSubject();
     this.initForm();
   }
 
@@ -73,7 +80,14 @@ export class CreateInvoiceComponent implements OnInit {
     this.invoiceService.getAllProducts().subscribe((data) => {
       this.invoiceService.productSubject$.next(data);
     });
+
     // this.getProductFromSubject();
+  }
+
+  getAllCustomers() {
+    this.customerService.getAllCustomers().subscribe((data) => {
+      this.invoiceService.customerSubject$.next(data);
+    });
   }
 
   getProductFromSubject() {
@@ -81,9 +95,16 @@ export class CreateInvoiceComponent implements OnInit {
       (data) => (this.products = data)
     );
   }
+  getCustomersFromSubject() {
+    this.invoiceService.customerSubject$.subscribe(
+      (data) => (this.customers = data)
+    );
+  }
 
   initForm() {
+    console.log(this.customers);
     this.customerDetails = this.fb.group({
+      id: new FormControl(0),
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       mobile: new FormControl('', {
@@ -126,36 +147,46 @@ export class CreateInvoiceComponent implements OnInit {
         this.isCash = false;
         this.isCredit = false;
       }
+
+      // console.log('customers: ', this.customers);
+      // console.log('data', data.mobile.va);
+      // const customer = this.customers.find((x) =>
+      //   x.mobile.includes(data.mobile.value)
+      // );
+      // console.log('ggggg', customer);
+      // if (customer) {
+      //   this.setFormData(customer);
+      // } else {
+      //   this.customerDetails.patchValue({
+      //     id: 0,
+      //     name: '',
+      //     email: '',
+      //     address1: '',
+      //     address2: '',
+      //     agentName: '',
+      //     agentMobile: '',
+      //     agentEmail: '',
+      //   });
+      // }
     });
   }
 
-  get name() {
-    return this.customerDetails.get('name');
-  }
-  get mobile() {
-    return this.customerDetails.get('mobile');
-  }
-  get email() {
-    return this.customerDetails.get('email');
-  }
+  setFormData(customer: Customer) {
+    console.log('form changes :', customer);
+    this.customerDetails.patchValue({
+      id: customer.id,
+      mobile: customer.mobile,
+      name: customer.name,
+      email: customer.email,
+      address1: customer.address1,
+      address2: customer.address2,
+      agentName: customer.agent?.name,
+      agentMobile: customer.agent?.mobile,
+      agentEmail: customer.agent?.email,
+    });
 
-  get address1() {
-    return this.customerDetails.get('address1');
+    this.searchCustomers = [];
   }
-  get address2() {
-    return this.customerDetails.get('address2');
-  }
-  // get agentName() {
-  //   return this.customerDetails.get('agent.name');
-  // }
-
-  // get agentEmail() {
-  //   return this.customerDetails.get('agent.email');
-  // }
-
-  // get agentMobile() {
-  //   return this.customerDetails.get('agent.mobile');
-  // }
 
   getInvoiceFromSubject() {
     this.invoiceService.invoiceSubject$.subscribe(
@@ -189,6 +220,24 @@ export class CreateInvoiceComponent implements OnInit {
       this.products = [];
     }
   }
+  searchCustomer(value: string) {
+    if (value) {
+      this.invoiceService.customerSubject$
+        .pipe(
+          map((data) => {
+            const res = data.filter((x) =>
+              x.mobile.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+            );
+            console.log('serahf', res);
+            const customer = data;
+            return res;
+          })
+        )
+        .subscribe((data) => (this.searchCustomers = data));
+    } else {
+      this.searchCustomers = [];
+    }
+  }
 
   addToCart(product: Product) {
     this.invoiceService.addProduct(product, 1, 0);
@@ -210,15 +259,22 @@ export class CreateInvoiceComponent implements OnInit {
     this.invoiceService.removeProduct(id);
   }
 
-  addTax(initInvoice: Invoice, value: string) {}
+  addTax(initInvoice: Invoice, value: string) {
+    this.invoiceService.addTax(initInvoice, Number(value));
+  }
+  addDiscount(initInvoice: Invoice, value: string) {
+    this.invoiceService.addDiscount(initInvoice, Number(value));
+  }
 
   onSubmit() {
     console.log('heelo');
     console.log('form value  : ', this.customerDetails.value);
-    this.invoiceService
-      .createAgent(this.customerDetails)
-      .subscribe((data) => console.log(data));
 
+    // if (this.customerDetails.value.id == 0) {
+    //   this.invoiceService
+    //     .createAgent(this.customerDetails)
+    //     .subscribe((data) => console.log(data));
+    // }
     this.router.navigate(['/protected/invoice/view']);
   }
 }

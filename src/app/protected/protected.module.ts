@@ -21,6 +21,8 @@ import { ListApprovalComponent } from './approval/list-approval/list-approval.co
 import { ApproveComponent } from './approval/approve/approve.component';
 import { DetailInvoiceComponent } from './invoice/detail-invoice/detail-invoice.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { CustomerComponent } from './customer/customer.component';
+import { CreateCustomerComponent } from './customer/create-customer/create-customer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
     ApproveComponent,
     DetailInvoiceComponent,
     DashboardComponent,
+    CustomerComponent,
+    CreateCustomerComponent,
   ],
   imports: [
     CommonModule,

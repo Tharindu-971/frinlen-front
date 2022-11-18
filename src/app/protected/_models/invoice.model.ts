@@ -2,7 +2,7 @@ import { Customer } from './customer.model';
 import { Product } from './product.model';
 
 export interface Invoice {
-  number: string;
+  number: number;
   total: number;
   subtotal: number;
   tax: number;
@@ -14,5 +14,5 @@ export interface Invoice {
   reason: string;
   isActive: boolean;
   cart: Product[];
-  customer:Customer
+  customer: Customer;
 }

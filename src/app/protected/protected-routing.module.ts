@@ -6,6 +6,8 @@ import { ListApprovalComponent } from './approval/list-approval/list-approval.co
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
+import { CreateCustomerComponent } from './customer/create-customer/create-customer.component';
+import { CustomerComponent } from './customer/customer.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { CreateInvoiceComponent } from './invoice/create-invoice/create-invoice.component';
 import { DetailInvoiceComponent } from './invoice/detail-invoice/detail-invoice.component';
@@ -61,6 +63,15 @@ const routes: Routes = [
           { path: 'approve', component: ApproveComponent },
           { path: 'list', component: ListApprovalComponent },
         ],
+      },
+      {
+        path: 'customer',
+        component: CustomerComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['ROLE_ADMIN'],
+        },
+        children: [{ path: 'create', component: CreateCustomerComponent }],
       },
     ],
   },

@@ -5,5 +5,7 @@ export interface Customer {
   name: string;
   mobile: string;
   email:string;
+  address1:string;
+  address2?:string;
   agent?: Agent;
 }
