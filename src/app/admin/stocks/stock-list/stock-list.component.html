@@ -1,102 +1,167 @@
-<table class="table table-scroll table-striped">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>County</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>Andrew</td>
-            <td>Jackson</td>
-            <td>Washington</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Thomas</td>
-            <td>Marion</td>
-            <td>Jackson</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Benjamin</td>
-            <td>Warren</td>
-            <td>Lincoln</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Grant</td>
-            <td>Wayne</td>
-            <td>Union</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>John</td>
-            <td>Adams</td>
-            <td>Marshall</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Morgan</td>
-            <td>Lee</td>
-            <td>Lake</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>John</td>
-            <td>Henry</td>
-            <td>Brown</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>William</td>
-            <td>Jacob</td>
-            <td>Orange</td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>Kelly</td>
-            <td>Davidson</td>
-            <td>Taylor</td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>Colleen</td>
-            <td>Hurst</td>
-            <td>Randolph</td>
-        </tr>
-        <tr>
-            <td>11</td>
-            <td>Rhona</td>
-            <td>Herrod</td>
-            <td>Cumberland</td>
-        </tr>
-        <tr>
-            <td>12</td>
-            <td>Jane</td>
-            <td>Paul</td>
-            <td>Marshall</td>
-        </tr>
-        <tr>
-            <td>13</td>
-            <td>Ashton</td>
-            <td>Fox</td>
-            <td>Calhoun</td>
-        </tr>
-        <tr>
-            <td>14</td>
-            <td>Garrett</td>
-            <td>John</td>
-            <td>Madison</td>
-        </tr>
-        <tr>
-            <td>15</td>
-            <td>Fredie</td>
-            <td>Winters</td>
-            <td>Washington</td>
-        </tr>
-    </tbody>
-</table>
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Fees Collection</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="example4_wrapper" class="dataTables_wrapper no-footer">
+                    <div class="dataTables_length" id="example4_length">
+                        <label>Show <select name="example4_length" aria-controls="example4" class="">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select> entries</label>
+                    </div>
+                    <div id="example4_filter" class="dataTables_filter"><label>Search:<input type="search" class=""
+                                placeholder="" aria-controls="example4"></label></div>
+                    <table id="example4" class="display dataTable no-footer" style="min-width: 845px" role="grid"
+                        aria-describedby="example4_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="example4" rowspan="1" colspan="1"
+                                    aria-sort="ascending" aria-label="Roll No: activate to sort column descending"
+                                    style="width: 77.2375px;">Roll No</th>
+                                <th class="sorting" tabindex="0" aria-controls="example4" rowspan="1" colspan="1"
+                                    aria-label="Student Name: activate to sort column ascending"
+                                    style="width: 155.625px;">Student Name</th>
+                                <th class="sorting" tabindex="0" aria-controls="example4" rowspan="1" colspan="1"
+                                    aria-label="Invoice number: activate to sort column ascending"
+                                    style="width: 157.413px;">Invoice number</th>
+                                <th class="sorting" tabindex="0" aria-controls="example4" rowspan="1" colspan="1"
+                                    aria-label="Fees Type : activate to sort column ascending"
+                                    style="width: 103.625px;">Fees Type </th>
+                                <th class="sorting" tabindex="0" aria-controls="example4" rowspan="1" colspan="1"
+                                    aria-label="Payment Type : activate to sort column ascending"
+                                    style="width: 141.475px;">Payment Type </th>
+                                <th class="sorting" tabindex="0" aria-controls="example4" rowspan="1" colspan="1"
+                                    aria-label="Status : activate to sort column ascending" style="width: 84.3px;">
+                                    Status </th>
+                                <th class="sorting" tabindex="0" aria-controls="example4" rowspan="1" colspan="1"
+                                    aria-label="Date: activate to sort column ascending" style="width: 96.2875px;">Date
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example4" rowspan="1" colspan="1"
+                                    aria-label="Amount: activate to sort column ascending" style="width: 82.8625px;">
+                                    Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">11</td>
+                                <td>Jena Gaines</td>
+                                <td>#12457</td>
+                                <td>Tuition</td>
+                                <td>Cash</td>
+                                <td><span class="badge light badge-danger">Udpaid</span></td>
+                                <td>2008/12/19</td>
+                                <td><strong>120$</strong></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td class="sorting_1">12</td>
+                                <td>Quinn Flynn</td>
+                                <td>#36987</td>
+                                <td>Library</td>
+                                <td>Cheque</td>
+                                <td><span class="badge light badge-warning">Panding</span></td>
+                                <td>2013/03/03</td>
+                                <td><strong>120$</strong></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">13</td>
+                                <td>Charde Marshall</td>
+                                <td>#98756</td>
+                                <td>Tuition</td>
+                                <td>Cheque</td>
+                                <td><span class="badge light badge-success">Paid</span></td>
+                                <td>2008/10/16</td>
+                                <td><strong>120$</strong></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td class="sorting_1">14</td>
+                                <td>Haley Kennedy</td>
+                                <td>#98754</td>
+                                <td>Library</td>
+                                <td>Cash</td>
+                                <td><span class="badge light badge-danger">Udpaid</span></td>
+                                <td>2012/12/18</td>
+                                <td><strong>120$</strong></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">15</td>
+                                <td>Tatyana Fitzpatrick</td>
+                                <td>#65248</td>
+                                <td>Annual</td>
+                                <td>Cheque</td>
+                                <td><span class="badge light badge-danger">Udpaid</span></td>
+                                <td>2010/03/17</td>
+                                <td><strong>120$</strong></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td class="sorting_1">16</td>
+                                <td>Michael Silva</td>
+                                <td>#75943</td>
+                                <td>Tuition</td>
+                                <td>Credit Card</td>
+                                <td><span class="badge light badge-success">Paid</span></td>
+                                <td>2012/11/27</td>
+                                <td><strong>120$</strong></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">17</td>
+                                <td>Paul Byrd</td>
+                                <td>#87954</td>
+                                <td>Library</td>
+                                <td>Cheque</td>
+                                <td><span class="badge light badge-warning">Panding</span></td>
+                                <td>2010/06/09</td>
+                                <td><strong>120$</strong></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td class="sorting_1">18</td>
+                                <td>Gloria Little</td>
+                                <td>#98746</td>
+                                <td>Tuition</td>
+                                <td>Cheque</td>
+                                <td><span class="badge light badge-success">Paid</span></td>
+                                <td>2009/04/10</td>
+                                <td><strong>120$</strong></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">19</td>
+                                <td>Bradley Greer</td>
+                                <td>#98674</td>
+                                <td>Annual</td>
+                                <td>Cash</td>
+                                <td><span class="badge light badge-danger">Udpaid</span></td>
+                                <td>2012/10/13</td>
+                                <td><strong>120$</strong></td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td class="sorting_1">20</td>
+                                <td>Dai Rios</td>
+                                <td>#69875</td>
+                                <td>Tuition</td>
+                                <td>Cheque</td>
+                                <td><span class="badge light badge-warning">Panding</span></td>
+                                <td>2012/09/26</td>
+                                <td><strong>120$</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="dataTables_info" id="example4_info" role="status" aria-live="polite">Showing 11 to 20 of
+                        30 entries</div>
+                    <div class="dataTables_paginate paging_simple_numbers" id="example4_paginate"><a
+                            class="paginate_button previous" aria-controls="example4" data-dt-idx="0" tabindex="0"
+                            id="example4_previous"><i class="fa fa-angle-double-left"
+                                aria-hidden="true"></i></a><span><a class="paginate_button " aria-controls="example4"
+                                data-dt-idx="1" tabindex="0">1</a><a class="paginate_button current"
+                                aria-controls="example4" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button "
+                                aria-controls="example4" data-dt-idx="3" tabindex="0">3</a></span><a
+                            class="paginate_button next" aria-controls="example4" data-dt-idx="4" tabindex="0"
+                            id="example4_next"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
