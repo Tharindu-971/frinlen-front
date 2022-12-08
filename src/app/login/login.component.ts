@@ -1,61 +1,55 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../protected/_services/auth.service';
-import { TokenStorageService } from '../protected/_services/token-storage.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthStore } from '../services/auth/auth.store';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: any = {
-    email: null,
-    password: null,
-  };
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
-  roles: string[] = [];
 
-  constructor(
-    private authService: AuthService,
-    private tokenStorage: TokenStorageService,
-    private router: Router
-  ) {}
+  loginForm:FormGroup;
+
+  constructor(private fb:FormBuilder,
+    private authStore:AuthStore,
+    private toastr:ToastrService,
+    private router:Router) { }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
+    this.loginForm = this.fb.group({
+      email:['',[Validators.required,Validators.email]],
+      password:['',[Validators.required]]
+    })
+  }
+
+  //get form controll
+  get f(): { [key: string]: AbstractControl } {
+    return this.loginForm.controls;
+  }
+
+  onSubmit(){
+
+    const val = this.loginForm.value;
+
+    this.authStore.login(val.email,val.password).subscribe((res:any)=>{
+      if(res.statusCodeValue ==401){
+        this.toastr.warning('Email or Password Incorrect')
+      }else if(res.statusCodeValue == 200){
+        this.toastr.success("Login successfull")
+        this.router.navigate(['/protected'])
+      }
+      
+    },
+    (error)=>{
+      console.log(error)
+      this.toastr.error('Internal Server Error Please Try Later')
     }
+    )
+
+
   }
 
-  onSubmit(): void {
-    const { email, password } = this.form;
-
-    this.authService.login(email, password).subscribe({
-      next: (data) => {
-        this.tokenStorage.saveToken(data.body.token);
-        this.tokenStorage.saveUser(data.body);
-        console.log('responsedata', data.body.token);
-
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['/protected/dashboard']);
-        //this.reloadPage();
-      },
-      error: (err) => {
-        console.log(err);
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      },
-    });
-    //this.router.navigate(['/protected/dashboard']);
-  }
-
-  reloadPage(): void {
-    window.location.reload();
-  }
 }

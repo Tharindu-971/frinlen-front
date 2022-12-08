@@ -1,29 +1,44 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './protected/register/register.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './protected/profile/profile.component';
-import { BoardAdminComponent } from './protected/board-admin/board-admin.component';
-import { BoardModeratorComponent } from './protected/board-moderator/board-moderator.component';
-import { BoardUserComponent } from './protected/board-user/board-user.component';
+import { LoadingComponent } from './common/loading/loading.component';
+import { LoadingService } from './services/loading/loading.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { authInterceptorProviders } from './interceptor/auth.interceptor';
+import { JwtModule } from "@auth0/angular-jwt";
+import { NgxPrintModule } from 'ngx-print';
 
-import { authInterceptorProviders } from './protected/_helpers/auth.interceptor';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-    HomeComponent,
+    LoadingComponent,
+
+
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule,ReactiveFormsModule, HttpClientModule],
-  providers: [authInterceptorProviders],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPrintModule,
+    ToastrModule.forRoot(),
+     JwtModule.forRoot({
+      config: {
+        tokenGetter:  () => localStorage.getItem('access_token')
+      }
+    })],
+  providers:[authInterceptorProviders,LoadingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

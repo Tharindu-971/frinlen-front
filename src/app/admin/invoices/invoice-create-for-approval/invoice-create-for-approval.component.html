@@ -1,0 +1,186 @@
+<div>
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Search Item</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form class="form-valide-with-icon needs-validation" novalidate="">
+                        <div class="mb-3">
+                            <!-- <label class="text-label form-label" for="validationCustomUsername">Username</label> -->
+                            <div class="input-group">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                <input type="text" class="form-control" #search (keyup)="searchProduct(search.value)"
+                                    placeholder="Search.." required="">
+                                <div class="help-block has-error">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4 order-lg-2 mb-4">
+                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-muted">Select one..</span>
+
+                                </h4>
+                                <ul class="list-group mb-3" *ngIf="(filterStocks$ | async) as stocks">
+
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed"
+                                        *ngFor="let product of stocks" (click)="addToCart(product.id,product)">
+                                        <div>
+                                            <h6 class="my-0">{{product.name}}</h6>
+                                            <small class="text-muted">Brief description</small>
+                                        </div>
+                                        <span class="text-muted">{{product.quantity}}</span>
+                                        <span class="text-muted">${{product.sellingPrice}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row" *ngIf="(invoice$|async) as invoice">
+                    <div class="col-lg-6 order-lg-2 " >
+                        <h4 class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted">Your cart</span>
+                            <span class="badge badge-primary badge-pill">{{invoice.number}}</span>
+                            <span class="badge badge-primary badge-pill"></span>
+                        </h4>
+                        <ul class="list-group ">
+                            <li class="list-group-item d-flex justify-content-between lh-condensed"
+                                *ngFor="let item of invoice.inventories">
+                                <div>
+                                    <h6 class="my-0">{{item.name}}</h6>
+                                    <small class="text-muted">{{item.inStock ?'INSTOCK':'OUTOFSTOCK'}}</small>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <input type="number" style="width: 100px; text-align: right;" #qty
+                                        (keyup)="addAmount(item.id,qty.value)" [value]="item.invoiceQty"
+                                        class="form-control" />
+
+                                </div>
+                                <div class="mr-0">
+
+                                    <span class="text-muted">LKR {{item.invoiceQty*item.sellingPrice}}</span>
+
+                                </div>
+                                <div>
+                                    <button class="btn btn-danger dark me-1 px-3" (click)="removeItem(item.id)"><i
+                                            class="fa fa-trash m-0"></i> </button>
+                                </div>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>VAT (%)</span>
+                                <div>
+                                    <input type="number" style="width: 80px; text-align: right;" class="form-control">
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (LKR)</span>
+                                <strong>{{invoice.total}}</strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <h4 class="mb-3">Billing Details</h4>
+
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form class="form-valide-with-icon needs-validation" novalidate="">
+                                    <div class="mb-3">
+
+                                        <div class="input-group">
+                                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                            <input type="text" class="form-control" #custom
+                                                (keyup)="searchCustomer(custom.value)" placeholder="Search.."
+                                                required="">
+                                            <div class="help-block has-error">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-12 order-lg-2 ">
+                                            <h4 class="d-flex justify-content-between align-items-center ">
+                                                <span class="text-muted">Select one..</span>
+
+                                            </h4>
+                                            <ul class="list-group "  *ngIf="(filterCustomers$ | async) as customers">
+
+                                                <li class="list-group-item d-flex justify-content-between lh-condensed"
+                                                        *ngFor="let customer of customers"
+                                                        (click)="addCustomer(customer)">
+                                                        <div>
+                                                            <h6 class="my-0">{{customer.name}}</h6>
+                                                           
+                                                        </div>
+                                                        <span class="text-muted">{{customer.mobile}}</span>
+                                                        <span class="text-muted">${{customer?.agent?.agentName}}</span>
+                                                    </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="card-body pb-3" *ngIf="invoice.customer.id!=0">
+                            <h4>Customer Details</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex px-0 justify-content-between">
+                                    <strong>Name</strong>
+                                    <span class="mb-0">{{invoice.customer.name}}</span>
+                                </li>
+                                <li class="list-group-item d-flex px-0 justify-content-between">
+                                    <strong>Mobile</strong>
+                                    <span class="mb-0">{{invoice.customer.mobile}}</span>
+                                </li>
+                                <li class="list-group-item d-flex px-0 justify-content-between">
+                                    <strong>Address</strong>
+                                    <span class="mb-0">{{invoice.customer.address1}}</span>
+                                </li>
+                                <li class="list-group-item d-flex px-0 justify-content-between">
+                                    <strong>Email</strong>
+                                    <span class="mb-0">{{invoice.customer?.email}}</span>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <button (click)="submit(invoice)" class="btn btn-primary btn-lg btn-block">SUBMIT FOR APPROVE</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [disabled]="!customerDetails.valid" -->

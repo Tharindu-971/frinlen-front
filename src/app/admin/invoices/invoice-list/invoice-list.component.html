@@ -1,0 +1,149 @@
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Invoice List</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="example2_wrapper" class="dataTables_wrapper" *ngIf="(invoices$ | async) as invoices">
+                    <div id="example2_filter" class="dataTables_filter" style="float: right;text-align: right;color: #737B8B;border-radius: 1rem;padding: 0.125rem 0;margin-bottom: 1.25rem;">
+                        <label>Search:
+                            <input type="search" class="" placeholder="" aria-controls="example2">
+                        </label>
+                        <button class="btn btn-success btn-sm" style="margin-left: 200px;" [routerLink]="['/protected/invoices/create-for-approve']">Create</button>
+                    </div>
+                    
+                    <div class="dataTables_scroll" *ngIf="(user$ |async) as user">
+                        <div class="dataTables_scrollHead"
+                            style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+                            <div class="dataTables_scrollHeadInner"
+                                style="box-sizing: content-box; width: 1102.43px; padding-right: 17px;">
+                                <table class="display dataTable" style="width: 1102.43px; margin-left: 0px;"
+                                    role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1" style="width: 120px;" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending">Number</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1" style="width: 180px;"
+                                                aria-label="Position: activate to sort column ascending">Customer</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1" style="width: 150.337px;"
+                                                aria-label="Office: activate to sort column ascending">Total</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1" style="width: 150.337px;"
+                                                aria-label="Office: activate to sort column ascending">Status</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1" style="width: 64.6px;"
+                                                aria-label="Age: activate to sort column ascending">Action</th>
+                                            
+                                                
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="dataTables_scrollBody"
+                            style="position: relative; overflow: auto; max-height: 42vh; width: 100%;">
+                            <table id="example2" class="display dataTable" style="width: 100%;" role="grid"
+                                aria-describedby="example2_info">
+                                <!-- <thead>
+                                    <tr role="row" style="height: 0px;">
+                                        <th class="sorting" aria-controls="example2" rowspan="1" colspan="1"
+                                            style="width: 120px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Name
+                                            </div>
+                                        </th>
+                                        <th class="sorting" aria-controls="example2" rowspan="1" colspan="1"
+                                            style="width: 288.788px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                                Position</div>
+                                        </th>
+                                        <th class="sorting" aria-controls="example2" rowspan="1" colspan="1"
+                                            style="width: 150.337px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Office
+                                            </div>
+                                        </th>
+                                        <th class="sorting" aria-controls="example2" rowspan="1" colspan="1"
+                                            style="width: 64.6px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Age
+                                            </div>
+                                        </th>
+                                        <th class="sorting" aria-controls="example2" rowspan="1" colspan="1"
+                                            style="width: 127.5px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Start
+                                                date</div>
+                                        </th>
+                                        <th class="sorting" aria-controls="example2" rowspan="1" colspan="1"
+                                            style="width: 121.537px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Salary
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead> -->
+                                <!-- <tfoot>
+                                    <tr style="height: 0px;">
+                                        <th rowspan="1" colspan="1"
+                                            style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 182.413px;">
+                                            <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Number
+                                            </div>
+                                        </th>
+                                        <th rowspan="1" colspan="1"
+                                            style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 279.038px;">
+                                            <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                                Customer</div>
+                                        </th>
+                                        <th rowspan="1" colspan="1"
+                                            style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 140.587px;">
+                                            <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Total
+                                            </div>
+                                        </th>
+                                        <th rowspan="1" colspan="1"
+                                            style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 54.85px;">
+                                            <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Action
+                                            </div>
+                                        </th>
+                                        
+                                    </tr>
+                                </tfoot> -->
+
+                                <tbody>
+                                    <tr *ngFor="let invoice of invoices"  role="row">
+                                        <td style="width: 250px;" >{{invoice.number}}</td>
+                                        <td style="width: 600px;">{{invoice.customer.name}}</td>
+                                        <td style="width: 500px;">{{invoice.total}}</td>
+                                        <td *ngIf="invoice.isApproved && invoice.approvedBy>0" style="width: 370px;"><span class="badge light badge-success">Completed<span class="ms-1 fa fa-check"></span></span></td>
+                                        <td *ngIf="!invoice.isApproved && invoice.approvedBy==0" style="width: 370px;"><span class="badge light badge-warning">Pending<span class="ms-1 fa fa-clock"></span></span></td>
+                                        <td *ngIf="!invoice.isApproved && invoice.approvedBy>0" style="width: 370px;"><span class="badge light badge-danger">Rejected<span class="ms-1 fa fa-trash"></span></span></td>
+                                        <td  style="width: 130px;">
+                                            <a *ngIf="user.roles.includes('ROLE_ADMIN')" [routerLink]="['/protected/invoices/',invoice.id,'approve']"  class="btn btn-info btn-sm">Approve</a>
+                                            <a *ngIf="user.roles.includes('ROLE_USER')" [routerLink]="['/protected/invoices/',invoice.id,'print']" class="btn btn-info btn-sm">Print</a></td>
+                                    </tr> 
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- <div class="dataTables_scrollFoot" style="overflow: hidden; border: 0px; width: 100%;">
+                            <div class="dataTables_scrollFootInner" style="width: 1102.43px; padding-right: 17px;">
+                                <table class="display dataTable" style="width: 1102.43px; margin-left: 0px;"
+                                    role="grid">
+                                    <tfoot>
+                                        <tr>
+                                            <th rowspan="1" colspan="1" style="width: 182.413px;">Number</th>
+                                            <th rowspan="1" colspan="1" style="width: 279.038px;">Customer</th>
+                                            <th rowspan="1" colspan="1" style="width: 140.587px;">Total</th>
+                                            <th rowspan="1" colspan="1" style="width: 54.85px;">Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{invoices.length}} of
+                        {{invoices.length}} entries</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
