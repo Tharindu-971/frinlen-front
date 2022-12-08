@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.toastr.warning('Email or Password Incorrect')
       }else if(res.statusCodeValue == 200){
         this.toastr.success("Login successfull")
-        this.router.navigate(['/protected'])
+        this.router.navigate(['/protected/invoices'])
       }
       
     },
