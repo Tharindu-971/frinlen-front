@@ -23,6 +23,7 @@ import { InvoiceReviewedListComponent } from './invoices/invoice-reviewed-list/i
 import { InvoiceApproveComponent } from './invoices/invoice-approve/invoice-approve.component';
 import { InvoicePrintComponent } from './invoices/invoice-print/invoice-print.component';
 import { NgxPrintModule } from 'ngx-print';
+import {DataTablesModule} from 'angular-datatables';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { NgxPrintModule } from 'ngx-print';
     FormsModule,
     ReactiveFormsModule,
     NgxPrintModule,
+    DataTablesModule,
     ToastrModule.forRoot()
   ]
 })

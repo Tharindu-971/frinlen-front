@@ -1,5 +1,24 @@
 
-
+@import url("../other/css2");
+@import url("../other/css");
+@import url("../other/css-1");
+@import url("../other/css-2");
+@import url("../other/css-3");
+@import url("../other/css-4");
+@import url("../icons/simple-line-icons/css/simple-line-icons.css");
+@import url("../icons/font-awesome/css/all.min.css");
+@import url("../icons/material-design-iconic-font/css/materialdesignicons.min.css");
+@import url("../icons/themify-icons/css/themify-icons.css");
+@import url("../icons/line-awesome/css/line-awesome.min.css");
+@import url("../icons/avasta/css/style.css");
+@import url("../icons/flaticon/flaticon.css");
+@import url("../icons/flaticon_1/flaticon_1.css");
+@import url("../icons/icomoon/icomoon.css");
+@import url("../icons/bootstrap-icons/font/bootstrap-icons.css");
+@import url(../vendor/animate/animate.min.css);
+@import url(../vendor/aos/css/aos.min.css);
+@import url(../vendor/perfect-scrollbar/css/perfect-scrollbar.css);
+@import url(../vendor/metismenu/css/metisMenu.min.css);
 :root {
   --primary: #216FED;
   --secondary: #943eff;
@@ -17875,7 +17894,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --title: #000; }
 
 [data-theme-version="transparent"] {
-  /* background: url(""); */
+  /* background: url("../images/body/12.jpg"); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -20998,8 +21017,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    /* background: url("../images/svg/")  */
-    /* no-repeat 0 0; } */}
+    /* background: url(../images/svg/cd-arrow.svg) no-repeat 0 0;  */
+  }
   .cd-h-timeline__navigation:hover {
     border-color: #68e365; }
 

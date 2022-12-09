@@ -30,7 +30,7 @@ export class InvoiceStore{
     private loadInvoices() {
         const loadInvoices$ = this.http.get<Invoice[]>(`${environment.apiUrl}/invoices`)
           .pipe(
-            map(response => {console.log(response);return response}),
+            map(response => {console.log("ffffffffffff",response);return response}),
             catchError(err => {
               const message = "Could not load invoices";
               this.toastr.error(message);

@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './interceptor/auth.interceptor';
 import { JwtModule } from "@auth0/angular-jwt";
 import { NgxPrintModule } from 'ngx-print';
+import {DataTablesModule} from 'angular-datatables';
 
 
 
@@ -32,6 +33,7 @@ import { NgxPrintModule } from 'ngx-print';
     ReactiveFormsModule,
     HttpClientModule,
     NgxPrintModule,
+    DataTablesModule,
     ToastrModule.forRoot(),
      JwtModule.forRoot({
       config: {
