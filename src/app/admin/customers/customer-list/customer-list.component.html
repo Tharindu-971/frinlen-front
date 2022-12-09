@@ -1,1 +1,32 @@
-<p>customer-list works!</p>
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Invoice</h4>
+            <button class="btn btn-success btn-sm" style="margin-left: 200px;" [routerLink]="['/protected/customers/create']">Create</button>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive" >
+                <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatableexample">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     <tr *ngFor="let group of data">
+                           <td>{{group.id}}</td>
+                           <td>{{group.name}}</td>
+                           <td>{{group.mobile}}</td>
+                           <td>{{group.email}}</td>
+                           <td>{{group.address1}}</td>
+                           </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
