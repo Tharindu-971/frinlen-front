@@ -77,6 +77,18 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label"  for="vatNo">Vat No.</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" formControlName="vatNo" id="vatNo" placeholder="Enter vat number.."
+                                        >
+                                    <!-- <div *ngIf="f['vatNo'].invalid && (f['vatNo'].dirty || f['email'].touched)">
+                                        <div *ngIf="f['email'].errors['email']" class="help-block has-error">
+                                            Email is not in correct format.
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
                                 <label class="col-lg-4 col-form-label" for="address2">Address 2 (Optional) </label>
                                 <div class="col-lg-6">
                                     <textarea class="form-control" formControlName="address2" id="address1" rows="5"

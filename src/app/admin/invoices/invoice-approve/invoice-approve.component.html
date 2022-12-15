@@ -24,15 +24,25 @@
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
-                    
+
                     <tbody>
-                        <tr>
-                            <td class="table-center" colspan="8" style="font-size: 22px;">HIGURANA DISTILLERIES (PVT) LTD</td>
+                        <!-- <tr>
+                            <td class="table-center" colspan="8" style="font-size: 22px;">FINNLAND DISTILLERIES CORPORATION(PVT) LTD</td>
                         </tr>
-                        <tr><td class="table-center" colspan="8">MALWANA ROAD, SAMANABEDDA</td></tr>
-                        <tr><td class="table-center" colspan="8">THITHAPATHTHARA</td></tr>
-                        <tr><td class="table-center" colspan="8">TEL:443455533, FAX: 432344553, EMAIL: finlanaa@hgoam</td></tr>
-                        <tr><td class="table-center" colspan="8" style="font-size: 26px; font-weight: bold;">TAX INVOICE</td></tr>
+                        <tr>
+                            <td class="table-center" colspan="8">MALWANA ROAD, SAMANABEDDA</td>
+                        </tr>
+                        <tr>
+                            <td class="table-center" colspan="8">THITHAPATHTHARA</td>
+                        </tr>
+                        <tr>
+                            <td class="table-center" colspan="8">TEL:443455533, FAX: 432344553, EMAIL: finlanaa@hgoam
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td class="table-center" colspan="8" style="font-size: 26px; font-weight: bold;">TAX INVOICE
+                            </td>
+                        </tr>
                         <!-- <tr>
                             <td rowspan="2"  colspan="6"></td>
                             <td class="table-right">INVOICE NO</td>
@@ -43,7 +53,7 @@
                             <td class="table-right">DELEVERY DATE</td>
                             <td class="table-cell-width">2022-11-29</td>
                         </tr> -->
-                        <tr>
+                        <!-- <tr>
                             <td class="table-right">DATE:</td>
                             <td>2022-12-10</td>
                             <td class="table-right">AREA:</td>
@@ -51,20 +61,20 @@
                             <td class="table-right">DISTRICT:</td>
                             <td colspan="2">Nuwara Eliya</td>
                             <td>CASH/CHEQ</td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td></td>
                         </tr>
                         <tr>
                             <td colspan="4">NAME & ADDRESS OF CUSTOMER</td>
-                            <td class="tabel-right" colspan="2">EXICE STATION</td>
-                            <td colspan="2">Nuwara Eliya</td>
+                            <!-- <td class="tabel-right" colspan="2">EXICE STATION</td>
+                            <td colspan="2">Nuwara Eliya</td> -->
                         </tr>
                         <tr>
                             <td class="tabel-right" colspan="2">Name:</td>
                             <td colspan="2">{{invoice.customer.name}}</td>
-                            <td class="tabel-right" colspan="2">LORRY NO</td>
-                            <td colspan="2">NG-3344</td>
+                            <!-- <td class="tabel-right" colspan="2">LORRY NO</td>
+                            <td colspan="2">NG-3344</td> -->
                         </tr>
                         <tr>
                             <td class="tabel-right" colspan="2">Mobile:</td>
@@ -84,7 +94,7 @@
                             <td colspan="3">VAEITY</td>
                             <td>QTY</td>
                             <td>RATE PER BOTTLE</td>
-                            <td >APPROVAL QTY</td>
+                            <td>APPROVAL QTY</td>
                             <td>QTY LITTERS</td>
                             <td>VALUE</td>
                         </tr>
@@ -93,13 +103,15 @@
                             <td>{{cart.invoiceQuantity}}</td>
                             <td>Rs. {{cart.inventory.sellingPrice}}</td>
                             <td>
-                                <input type="number" (keyup)="addApprovedAmount(invoice.id,cart.id,approvedAmount.value)" class="form-control" #approvedAmount>
+                                <input type="number" [value]="cart.approvedQuantity"
+                                    (keyup)="addApprovedAmount(invoice.id,cart.id,approvedAmount.value)"
+                                    class="form-control" #approvedAmount>
                                 <div class="help-block has-error"></div>
                             </td>
-                            <td>{{cart.inventory.liters}} L</td>
+                            <td>{{(cart.inventory.unitLiters*cart.approvedQuantity)}} L</td>
                             <td>Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity}}</td>
                         </tr>
-                         <!-- <tr>
+                        <!-- <tr>
                             <td rowspan="3"colspan="6"></td>
                            
                             <td>Rs. {{invoice.subTotal}}</td>
@@ -117,18 +129,27 @@
                 </table>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-5"> </div>
+                <div class="col-lg-8 col-sm-5">
+                    <div class="mb-3 row">
+                        <label class="col-lg-3 col-form-label" for="validationCustom04">Reason 
+                        </label>
+                        <div class="col-lg-6">
+                            <textarea class="form-control" #reason (focusout)="addReason(reason.value,invoice)" id="validationCustom04" rows="5"
+                                placeholder="If you reject please put a reason.." required=""></textarea>
+                            <div class="invalid-feedback">
+                                Please enter a Suggestions.
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- <div class="col-lg-4 col-sm-5 ms-auto">
                     <table class="table table-clear">
                         <tbody>
                             <tr>
                                 <td class="left"><strong>Subtotal</strong></td>
-                                <td class="right">LKR {{invoice.subtotal}}</td>
+                                <td class="right">LKR {{invoice.subTotal}}</td>
                             </tr>
-                            <tr>
-                                <td class="left"><strong>Discount ({{initInvoice.discount}}%)</strong></td>
-                                <td class="right">LKR {{invoice.discountAmount}}</td>
-                            </tr>
+                            
                             <tr>
                                 <td class="left"><strong>VAT ({{invoice.tax}}%)</strong></td>
                                 <td class="right">LKR {{invoice.taxAmount}}</td>
@@ -145,7 +166,10 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="btn-group d-flex align-items-end">
-                                 <button type="button" class="btn  btn-primary btn-lg btn-block" (click)="submit(invoice)">Approve</button>
+                                <button type="button" class="btn  btn-primary btn-lg btn-block"
+                                    (click)="submit(invoice)">Approve</button>
+                                <button type="button" class="btn  btn-danger btn-lg btn-block"
+                                    (click)="reject(invoice)">Reject</button>
 
                             </div>
                         </div>

@@ -6,6 +6,7 @@ export interface Customer{
     name:string;
     mobile:string;
     email:string;
+    vatNo?:string;
     address1:string;
     address2?:string;
     isActive:boolean;

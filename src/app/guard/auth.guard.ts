@@ -16,6 +16,7 @@ export class AuthGuard implements CanActivate {
       console.log("authguar")
       return true;
     }
+    
     this.toastr.warning("Invalid token please Login again!")
     this.router.navigate(['/login'])
     return false;

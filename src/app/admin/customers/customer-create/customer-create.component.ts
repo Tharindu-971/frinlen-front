@@ -18,6 +18,7 @@ export class CustomerCreateComponent implements OnInit {
       name:['',[Validators.required]],
       mobile:['',[Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern('^[0-9]+')]],
       email:['',[Validators.email]],
+      vatNo:[''],
       address1:['',[Validators.required]],
       address2:[''],
       isActive:[true]

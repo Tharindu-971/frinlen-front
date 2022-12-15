@@ -10,3 +10,7 @@
     max-width: 250px;
     width: 200px;
 }
+.test{
+    display: flex;
+    justify-content: space-between;
+}

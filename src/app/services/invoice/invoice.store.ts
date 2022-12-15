@@ -14,7 +14,6 @@ import { LoadingService } from "../loading/loading.service";
 })
 export class InvoiceStore{
 
-  
 
     private subject= new BehaviorSubject<Invoice[]>([])
     private invoiceSubject= new BehaviorSubject<Invoice>(null)
@@ -45,9 +44,9 @@ export class InvoiceStore{
     
       createInvoice(invoice:Invoice):Observable<any>{
         const invoices = this.subject.getValue();
-        invoices.push(invoice);
-        this.subject.next(invoices);
-        return this.http.post<any>(`${environment.apiUrl}/invoices`,invoice)
+        // invoices.push(invoice);
+        // this.subject.next(invoices);
+        const sava$= this.http.post<any>(`${environment.apiUrl}/invoices`,invoice)
           .pipe(
             map(response=>{
               console.log("res",response)
@@ -64,6 +63,9 @@ export class InvoiceStore{
               return throwError(err)
             })
           )
+
+          this.loadInvoices();
+          return sava$;
       }
     
       updateInvoice(id:number,invoice:Partial<Invoice>):Observable<any>{
@@ -183,8 +185,7 @@ export class InvoiceStore{
         console.log(invoice)
       }
 
-      
-      approveInvoice(id:number,invoice:Invoice):Observable<any>{
+      addReason(id: number, invoice: Invoice){
         const invoices = this.subject.getValue();
         const index = invoices.findIndex(invoice=>invoice.id == id);
     
@@ -195,13 +196,33 @@ export class InvoiceStore{
         const newInvoices : Invoice[]=invoices.slice(0);
         newInvoices[index] = newInvoice;
         this.subject.next(newInvoices);
+      }
+      
+      approveInvoice(id:number,invoice:Invoice):Observable<any>{
+        const invoices = this.subject.getValue();
+        const index = invoices.findIndex(invoice=>invoice.id == id);
+    
+        const newInvoice:Invoice = this.calTotal(invoice,invoice.inventories) 
+        // const newInvoice:Invoice ={
+        //   ...invoices[index],
+        //   ...invoice
+        // } 
+        const newInvoices : Invoice[]=invoices.slice(0);
+        newInvoices[index] = newInvoice;
+        this.subject.next(newInvoices);
 
         return this.http.post<any>(`${environment.apiUrl}/invoices/approve/${id}`,invoice)
         .pipe(
           map(response =>{
             
             if(response){
+              console.log("res drews :",response)
+              if(response.approved){
                 this.toastr.success("Invoice Approved Successfully")
+              }else{
+                this.toastr.warning("Invoice Rejected Successfully")
+              }
+                
               }else{
                 this.toastr.warning("Could not Approve Invoice")
               }
@@ -213,4 +234,20 @@ export class InvoiceStore{
           })
         )
       }
+
+
+      private calTotal(invoice:Invoice,stocks:Stock[]){
+        // const invoice = this.invoiceSubject.getValue();
+        invoice.total=0;
+        invoice.subTotal=0;
+
+        for(let i = 0 ;i<stocks.length;i++){
+            invoice.subTotal += Math.round((stocks[i].sellingPrice*stocks[i].approvedQty) * 100) / 100;
+        }
+        
+        invoice.tax =Math.round((invoice.subTotal*0.15 ) * 100) / 100; 
+        invoice.total = Math.round((invoice.subTotal+invoice.tax) * 100) / 100;
+        //this.invoiceSubject.next(invoice);
+        return invoice;
+    }
 }

@@ -126,5 +126,21 @@ export class StockStore {
         this.searchSubject.next(filteredStock);
     }
 
+    getNextProductCode():Observable<any>{
+        const loadCode$ = this.http.get<any>(`${environment.apiUrl}/inventories/code`)
+            .pipe(
+                map(response => response),
+                catchError(err => {
+                    const message = "Could not load stocks";
+                    this.toastr.error(message);
+                    console.log("StockStore:loadStocks", err)
+                    return throwError(err)
+                }),
+                
+            )
+
+        return loadCode$;
+    }
+
     clearSeach(){this.searchSubject.next([])}
 }

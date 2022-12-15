@@ -2,7 +2,21 @@
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">Invoice</h4>
+            
+            <div class="col-lg-6">
+                <select class="default-select wide form-control" id="validationCustom05">
+                    <option data-display="Select">Filter</option>
+                    <option value="html">All</option>
+                    <option value="css">Complete</option>
+                    <option value="javascript">Pending</option>
+                    <option value="angular">Rejected</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a one.
+                </div>
+            </div>
             <button class="btn btn-success btn-sm" style="margin-left: 200px;" [routerLink]="['/protected/invoices/create-for-approve']">Create</button>
+
         </div>
         <div class="card-body">
             <div class="table-responsive" *ngIf="(user$|async) as user">
@@ -23,8 +37,8 @@
                                         <td *ngIf="!group.isApproved && group.approvedBy==0" style="width: 370px;"><span class="badge light badge-warning">Pending<span class="ms-1 fa fa-clock"></span></span></td>
                                         <td *ngIf="!group.isApproved && group.approvedBy>0" style="width: 370px;"><span class="badge light badge-danger">Rejected<span class="ms-1 fa fa-trash"></span></span></td>
                                         <td  style="width: 130px;">
-                                            <a *ngIf="user.roles.includes('ROLE_ADMIN')" [routerLink]="['/protected/invoices/',group.id,'approve']"  class="btn btn-info btn-sm">Approve</a>
-                                            <a *ngIf="user.roles.includes('ROLE_USER')" [routerLink]="['/protected/invoices/',group.id,'print']" class="btn btn-info btn-sm">Print</a></td>
+                                            <a *ngIf="user.roles.includes('ROLE_ADMIN')&& !(group.isApproved && group.approvedBy>0)" [routerLink]="['/protected/invoices/',group.id,'approve']"  class="badge light badge-success ml-2 ">Approve<span class="ms-1 fa fa-check"></span></a>
+                                            <a *ngIf="user.roles.includes('ROLE_USER') && (group.isApproved && group.approvedBy>0)" [routerLink]="['/protected/invoices/',group.id,'print']" class="badge light badge-info ml-2">Print<span class="ms-1 fa fa-print"></span></a></td>
                        </tr>
                     </tbody>
                   </table>

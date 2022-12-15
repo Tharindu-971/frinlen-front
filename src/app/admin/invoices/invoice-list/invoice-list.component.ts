@@ -33,6 +33,6 @@ export class InvoiceListComponent implements OnInit,OnDestroy{
       })
     }
     ngOnDestroy(): void {
-      this.dtTrigger.unsubscribe();
+      //this.dtTrigger.unsubscribe();
     }
 }

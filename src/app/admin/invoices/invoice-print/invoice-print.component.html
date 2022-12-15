@@ -34,33 +34,164 @@
                         </tr>
                     </thead> -->
                     <tbody>
+                        <!-- <tr>
+                            <td class="table-center" colspan="8" style="font-size: 22px;"></td>
+                        </tr> -->
                         <tr>
-                            <td class="table-center" colspan="8" style="font-size: 22px;">FINNLAND DISTILLERIES (PVT) LTD</td>
+                            <td class="table-center" colspan="8" style="font-size: 22px;">FINNLAND DISTILLERIES CORPORATION (PVT) LTD</td>
                         </tr>
-                        <tr><td class="table-center" colspan="8">No. 123, 3rd Floor, Anagarika, Srimath Anagarika Dharmapala Mawatha</td></tr>
-                        <tr><td class="table-center" colspan="8">COLOMBO</td></tr>
-                        <tr><td class="table-center" colspan="8">TEL:0112 113 325, FAX: 0112 113 325, EMAIL: info@finnlandholdings.com</td></tr>
+                        <tr><td class="table-center" colspan="8">No. 07, Morukkuliya Road,Dankotuwa.</td></tr>
+                        <tr><td class="table-center" colspan="8">Tel. No:011-2331125        Email:accounts@finnland.lk</td></tr>
                         <tr><td class="table-center" colspan="8" style="font-size: 26px; font-weight: bold;">TAX INVOICE</td></tr>
                         <tr>
-                            <td rowspan="2"  colspan="6"></td>
-                            <td class="table-right">INVOICE NO</td>
-                            <td>{{invoice.number}}</td>
+                            <td rowspan="2"  colspan="8"></td>
+                            <!-- <td class="table-right">INVOICE NO</td>
+                            <td>{{invoice.number}}</td> -->
                         </tr>
                         <tr>
 
-                            <td class="table-right">DELEVERY DATE</td>
-                            <td class="table-cell-width">2022-11-29</td>
+                            <!-- <td class="table-right">DELEVERY DATE</td>
+                            <td class="table-cell-width">2022-11-29</td> -->
                         </tr>
                         <tr>
-                            <td class="table-right">DATE:</td>
-                            <td>2022-12-10</td>
-                            <td class="table-right">AREA:</td>
-                            <td>Adhikaragama</td>
-                            <td class="table-right">DISTRICT:</td>
-                            <td colspan="2">Nuwara Eliya</td>
-                            <td>CASH/CHEQ</td>
+                            <td >
+                                <div class="test">
+                                    <div>Company Vat No.</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            
+                            <td colspan="3">104083811- 7000</td>
+                            <!-- <td  colspan="2" style="width: 5px;" ></td> -->
+                            <td  style="min-width: 120px;">
+                                <div class="test">
+                                    <div>Date</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3">2022-12-13</td>
+                            
                         </tr>
                         <tr>
+                            <td>
+                                <div class="test">
+                                    <div>Customer Name</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            
+                            <td colspan="3">{{invoice.customer.name}}</td>
+                            <td >
+                                <div class="test">
+                                    <div>Invoice No</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3">{{invoice.number}}</td>
+                            
+                        </tr>
+                        <tr>
+                            <td >
+                                <div class="test">
+                                    <div>Address</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            
+                            <td colspan="3" >{{invoice.customer.address1}}</td>
+                            <td >
+                                <div class="test">
+                                    <div>Order No.</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3">{{invoice.id}}</td>
+                            
+                        </tr>
+                        <tr>
+                            <td colspan="4" rowspan="4" ></td>
+                            <td >
+                                <div class="test">
+                                    <div>District</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3"></td>
+                            
+                        </tr>
+                        <tr>
+
+                            <td >
+                                <div class="test">
+                                    <div>Area</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3"></td>
+                            
+                        </tr>
+                        <tr>
+
+                            <td >
+                                <div class="test">
+                                    <div>Excise Station</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3"></td>
+                            
+                        </tr>
+                        <tr>
+                            
+                            <td >
+                                <div class="test">
+                                    <div>CST No.</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="2"></td>
+                            
+                        </tr>
+                        <tr>
+                            <td >
+                                <div class="test">
+                                    <div>Contact Number</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            
+                            <td colspan="3">{{invoice.customer.mobile}}</td>
+                            <td >
+                                <div class="test">
+                                    <div>Lorry No.</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3"></td>
+                            
+                        </tr>
+                        <tr>
+                            <td >
+                                <div class="test">
+                                    <div>Customer Vat No.</div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            
+                            <td colspan="3">
+
+                            </td>
+                            <td >
+                                <div class="test">
+                                    <div>Delivery Date 
+                                    </div>
+                                    <div>:</div>
+                                </div>
+                            </td>
+                            <td colspan="3"></td>
+                            
+                        </tr>
+                        <!-- <tr>
                             <td></td>
                         </tr>
                         <tr>
@@ -83,51 +214,130 @@
                             <td class="tabel-right" colspan="2">Address:</td>
                             <td colspan="2">{{invoice.customer.address1}}</td>
 
-                        </tr>
+                        </tr> -->
 
                         <tr>
                             <td></td>
                         </tr>
                         <tr>
-                            <td colspan="3">VAEITY</td>
+                            <td>PRODUCT CODE</td>
+                            <td colspan="2">DESCRIPTION</td>
+                            <td >VOLUMN</td>
                             <td>QTY</td>
-                            <td colspan="2">RATE PER BOTTLE</td>
-                            <td>QTY LITTERS</td>
+                            <td>RATE PER BOTTLE</td>
+                            <td>LITERS</td>
                             <td>VALUE</td>
                         </tr>
                         <tr *ngFor="let cart of invoice.invoiceQuantities">
-                            <td colspan="3">{{cart.inventory.name}}</td>
+                            <td >{{cart.inventory.id}}</td>
+                            <td colspan="2">{{cart.inventory.name}}</td>
+                            <td>{{cart.inventory.unitLiters}} ml</td>
                             <td>{{cart.approvedQuantity}}</td>
-                            <td colspan="2">Rs. {{cart.inventory.sellingPrice}}</td>
-                            
-                            <td>{{cart.invoiceQuantity*cart.inventory.unitLiters}} L</td>
+                            <td>{{cart.inventory.sellingPrice}}</td>             
+                            <td>{{cart.approvedQuantity*cart.inventory.unitLiters}} L</td>
                             <td>Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity}}</td>
                         </tr>
                         <tr>
-                            <td rowspan="3"colspan="6"></td>
-                            <td >SUBTOTAL</td>
-                            <td>Rs. {{invoice.subTotal}}</td>
+                            <td colspan="5"></td>
+                            <td >Total Liters</td>
+                            <td colspan="2">444L</td>
+                            <!-- <td>Rs. {{invoice.subTotal}}</td> -->
                            
                         </tr>
                         <tr>
-                            <td >VAT {{invoice.tax}}%</td>
-                            <td>Rs. {{invoice.taxAmount}}</td>
+                            <td colspan="6" rowspan="4"></td>
+                            <td >SUBTOTAL</td>
+                            <td>Rs. {{invoice.subTotal}}</td>
+                        </tr>
+                        <tr>
+                            <td >SSCL</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td >VAT 15%</td>
+                            <td>Rs. {{invoice.tax}}</td>
                         </tr>
                         <tr>
                             <td >TOTAL</td>
                             <td>Rs. {{invoice.total}}</td>
                         </tr>
 
-                        <!-- <tr *ngFor="let cart of invoice.cart;let i=index ">
-                            <td class="center">{{i+1}}</td>
-                            <td class="left strong">{{cart.name}}</td>
-                            <td class="right">LKR {{cart.sellingPrice}}</td>
-                            <td class="center">{{cart.quantity}}</td>
-                            <td class="right">LKR {{cart.sellingPrice*cart.quantity}}</td>
+                        <tr>
+                            <td colspan="8"></td>
                         </tr>
-                        <tr></tr> -->
+                        <tr>
+                            <td  colspan="8" >Cheques should be drawn in favour of <strong>"Finnland Distilleries Corporation (pvt) Ltd"</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8"></td>
+                        </tr>
+                        <tr><td class="table-center" colspan="8" style="font-weight: bold;font-size: 14px;"><u>Acknowledgment of Goods</u></td></tr> 
                         
-
+                        <tr>
+                            <td class="table-right" colspan="2" >
+                                <!-- <div class="test">
+                                    <div>Athorized  Signature</div>
+                                    <div>:</div>
+                                </div> -->
+                                Athorized  Signature :
+                            </td>
+                            
+                            <td colspan="2">
+                                _________________________________
+                            </td>
+                            
+                            <td class="table-right" colspan="2">
+                                <!-- <div class="test">
+                                    <div>Customer Name
+                                    </div>
+                                    <div>:</div>
+                                </div> -->
+                                Customer Name :
+                            </td>
+                            <td colspan="2">_________________________________</td>
+                            
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                
+                            </td>
+                            
+                            
+                            
+                            <td colspan="2">
+                                
+                            </td>
+                            <td colspan="2"></td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="table-right" colspan="2" >
+                                <!-- <div class="test">
+                                    <div>Sales officer Signature </div>
+                                    <div>:</div>
+                                </div> -->
+                                Sales officer Signature :
+                            </td>
+                            
+                            <td colspan="2">
+                                _________________________________
+                            </td>
+                            
+                            <td class="table-right" colspan="2">
+                                <!-- <div class="test">
+                                    <div>Date
+                                    </div>
+                                    <div>:</div>
+                                </div> -->
+                                Date :
+                            </td>
+                            <td colspan="2">______/_______/______________</td>
+                            
+                        </tr>
+                        <tr>
+                            <!-- <td colspan="6"></td> -->
+                            <td colspan="8" style="text-align: end;"><strong>(Received the above goods in correct quantity & in good condition)</strong></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -162,7 +372,7 @@
                         <div class="card-body">
                             <div class="btn-group d-flex align-items-end">
                                 <button type="button" class="btn  btn-primary btn-lg btn-block" printSectionId="demo"  ngxPrint 
-                                printTitle="FINNLAND INVOICE" [useExistingCss]="true"  >Print</button>
+                                printTitle="FINNLAND DISTILLERIES CORPORATION (PVT) LTD" [useExistingCss]="true"  >Print</button>
 
                             </div>
                         </div>

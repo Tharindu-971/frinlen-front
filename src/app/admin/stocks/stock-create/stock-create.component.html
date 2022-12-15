@@ -24,21 +24,21 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-lg-4 col-form-label" for="buyingPrice">Buying Price(LKR) <span
+                                <label class="col-lg-4 col-form-label" for="code">Code <span
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="number" class="form-control" formControlName="buyingPrice" id="buyingPrice"
+                                    <input type="number" readonly class="form-control" formControlName="code" id="code"
                                         placeholder="Enter Buying Price.." >
-                                    <div *ngIf="f['buyingPrice'].invalid && (f['buyingPrice'].dirty || f['buyingPrice'].touched)">
-                                        <div *ngIf="f['buyingPrice'].errors['required']" class="help-block has-error">
-                                            Buying Price is required.
+                                    <!-- <div *ngIf="f['code'].invalid && (f['code'].dirty || f['code'].touched)">
+                                        <div *ngIf="f['code'].errors['required']" class="help-block has-error">
+                                            Code is required.
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-lg-4 col-form-label" for="sellingPrice">Selling Price(LKR) <span
+                                <label class="col-lg-4 col-form-label" for="sellingPrice">Unit Price(LKR) <span
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
@@ -46,7 +46,7 @@
                                         placeholder="Enter Selling Price.." >
                                     <div *ngIf="f['sellingPrice'].invalid && (f['sellingPrice'].dirty || f['sellingPrice'].touched)">
                                         <div *ngIf="f['sellingPrice'].errors['required']" class="help-block has-error">
-                                            Selling Price is required.
+                                            Unit Price is required.
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                             </div>
 
                             <div class="mb-3 row">
-                                <label class="col-lg-4 col-form-label" for="unitLiters">Unit Volume (LTR) <span
+                                <label class="col-lg-4 col-form-label" for="unitLiters">Volume (ml) <span
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
