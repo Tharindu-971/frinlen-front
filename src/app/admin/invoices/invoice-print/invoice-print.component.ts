@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,9 +13,11 @@ import { InvoiceStore } from 'src/app/services/invoice/invoice.store';
 export class InvoicePrintComponent implements OnInit{
 
   invoice$:Observable<Invoice>;
+  myDate = new Date();
+  datePipe: any;
 
   constructor(private invoiceStore:InvoiceStore,private route:ActivatedRoute){
-    
+    this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
   }
   ngOnInit(): void {
     

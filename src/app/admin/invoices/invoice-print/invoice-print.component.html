@@ -69,7 +69,7 @@
                                     <div>:</div>
                                 </div>
                             </td>
-                            <td colspan="3">2022-12-15</td>
+                            <td colspan="3">{{myDate | date: 'shortDate' }}</td>
                             
                         </tr>
                         <tr>
@@ -237,14 +237,14 @@
                             <td>{{cart.inventory.unitLiters}} ml</td>
                             <td>{{cart.approvedQuantity}}</td>
                             <td>{{cart.inventory.sellingPrice}}</td>             
-                            <td>{{cart.approvedQuantity*cart.inventory.unitLiters}} L</td>
+                            <td>{{cart.approvedQuantity*(cart.inventory.unitLiters/1000)| number : '1.2-2'}} L</td>
                             <td>Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity | number : '1.2-2'}}</td>
                         </tr>
                         <tr>
                             <td colspan="5"></td>
                             <td >Total Liters</td>
-                            <td colspan="2"></td>
-                            <td>Rs. {{invoice.totalLiters | number : '1.2-2'}}</td>
+                            <td colspan="2">{{invoice.totalLiters | number : '1.2-2'}} L</td>
+
                            
                         </tr>
                         <tr>

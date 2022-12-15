@@ -108,7 +108,7 @@
                                     class="form-control" #approvedAmount>
                                 <div class="help-block has-error"></div>
                             </td>
-                            <td>{{(cart.inventory.unitLiters*cart.approvedQuantity) | number : '1.2-2'}} L</td>
+                            <td>{{((cart.inventory.unitLiters/1000)*cart.approvedQuantity) | number : '1.2-2'}} L</td>
                             <td>Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity | number : '1.2-2'}}</td>
                         </tr>
                         <!-- <tr>
