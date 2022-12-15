@@ -13,8 +13,11 @@ export class InvoicePrintComponent implements OnInit{
 
   invoice$:Observable<Invoice>;
 
-  constructor(private invoiceStore:InvoiceStore,private route:ActivatedRoute){}
+  constructor(private invoiceStore:InvoiceStore,private route:ActivatedRoute){
+    
+  }
   ngOnInit(): void {
+    
     this.invoiceStore.getInvoiceById(Number(this.route.snapshot.paramMap.get('id')));
     this.invoice$ = this.invoiceStore.invoice$;
   }

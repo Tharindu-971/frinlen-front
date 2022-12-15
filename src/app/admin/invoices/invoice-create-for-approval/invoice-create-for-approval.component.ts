@@ -129,5 +129,6 @@ export class InvoiceCreateForApprovalComponent implements OnInit{
     invoice.subTotal = Math.round((invoice.subTotal) * 100) / 100;
     this.invoiceStore.createInvoice(invoice).subscribe(()=>this.tempInvoiceStore.reset())
     this.router.navigate(['/protected/invoices/'])
+    
   }
 }

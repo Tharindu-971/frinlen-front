@@ -168,7 +168,7 @@
                                 </div>
                             </td>
                             <td colspan="3">
-                                <input type="text" class="form-control" formControlName="name" id="name"
+                                <input type="text" class="form-control"  id="name"
                                         placeholder="Enter a Lorry number" >
                             </td>
                             
@@ -238,13 +238,13 @@
                             <td>{{cart.approvedQuantity}}</td>
                             <td>{{cart.inventory.sellingPrice}}</td>             
                             <td>{{cart.approvedQuantity*cart.inventory.unitLiters}} L</td>
-                            <td>Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity}}</td>
+                            <td>Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity | number : '1.2-2'}}</td>
                         </tr>
                         <tr>
                             <td colspan="5"></td>
                             <td >Total Liters</td>
                             <td colspan="2"></td>
-                            <!-- <td>Rs. {{invoice.subTotal}}</td> -->
+                            <td>Rs. {{invoice.totalLiters | number : '1.2-2'}}</td>
                            
                         </tr>
                         <tr>
