@@ -107,7 +107,8 @@ export class InvoiceCreateForApprovalComponent implements OnInit{
 
   addAmount(id:number,value:string){
     
-    this.tempInvoiceStore.addAmount(id,Number(value))
+    this.tempInvoiceStore.addAmount(id,Math.round((Number(value)) * 100) / 100)
+    
     this.stockStore.clearSeach()
   }
 

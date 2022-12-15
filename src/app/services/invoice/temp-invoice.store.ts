@@ -84,7 +84,7 @@ export class TempInvoiceStore {
         this.calTotal(invoice.inventories)
     }
 
-    addAmount(id:number,value:number){
+        addAmount(id:number,value:number){
         const invoice = this.invoiceSubject.getValue();
 
         const existingStock: Stock[] = invoice.inventories;
