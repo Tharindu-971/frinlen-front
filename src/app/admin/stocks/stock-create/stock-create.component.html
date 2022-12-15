@@ -109,6 +109,14 @@
                                         placeholder="Total Liters.." >
                                 </div>
                             </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label"  for="strength">Strength (%)</label>
+                                <div class="col-lg-6">
+                                    <input type="number" class="form-control" formControlName="strength" id="strength"
+                                        placeholder="Strength.." >
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <button type="submit" [disabled]="!stockForm.valid" class="btn me-2 btn-primary">Submit</button>

@@ -35,7 +35,8 @@ export class StockCreateComponent implements OnInit{
       status:['INSTOCK'],
       isActive:[true],
       unitLiters:[0,[Validators.required]],
-      liters:[0]
+      liters:[0],
+      strength:[0]
     })
 
     //this.stockForm.controls['liters'].disable();
