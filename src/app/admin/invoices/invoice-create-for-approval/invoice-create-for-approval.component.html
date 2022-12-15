@@ -36,7 +36,7 @@
                                         *ngFor="let product of stocks" (click)="addToCart(product.id,product)">
                                         <div>
                                             <h6 class="my-0">{{product.name}}</h6>
-                                            <small class="text-muted">Brief description</small>
+                                            <small class="text-muted">{{product.code}}</small>
                                         </div>
                                         <span class="text-muted">{{product.quantity}}</span>
                                         <span class="text-muted">${{product.sellingPrice}}</span>
