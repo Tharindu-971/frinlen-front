@@ -129,9 +129,11 @@ export class TempInvoiceStore {
         const invoice = this.invoiceSubject.getValue();
         invoice.total=0;
         invoice.subTotal=0;
+        invoice.totalLiters= 0;
 
         for(let i = 0 ;i<stocks.length;i++){
             invoice.subTotal += Math.round((stocks[i].sellingPrice*stocks[i].invoiceQty) * 100) / 100;
+            invoice.totalLiters += Math.round((stocks[i].unitLiters*stocks[i].invoiceQty) * 100) / 100;
         }
         
         invoice.tax =Math.round((invoice.subTotal*0.15 ) * 100) / 100; 

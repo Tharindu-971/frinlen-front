@@ -8,6 +8,7 @@ export interface Invoice{
     id?:number;
     number:string;
     total:number;
+    totalLiters?:number;
     subTotal:number;
     tax:number;
     taxAmount:number;

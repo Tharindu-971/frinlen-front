@@ -122,7 +122,7 @@ export class StockStore {
         
         const stocks = this.subject.getValue();
         const filteredStock = stocks.filter(key=>key.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
-
+        console.log(filteredStock)
         this.searchSubject.next(filteredStock);
     }
 

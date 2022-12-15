@@ -4,6 +4,7 @@ import { ToastrService } from "ngx-toastr";
 import { BehaviorSubject, catchError, map, Observable, tap, throwError } from "rxjs";
 import { Agent } from "src/app/models/agent.model";
 import { Customer } from "src/app/models/customer.model";
+import { InvoiceQty } from "src/app/models/invoice-qty.model";
 import { Invoice } from "src/app/models/invoice.model";
 import { Stock } from "src/app/models/stock.model";
 import { environment } from "src/environments/environment";
@@ -201,8 +202,8 @@ export class InvoiceStore{
       approveInvoice(id:number,invoice:Invoice):Observable<any>{
         const invoices = this.subject.getValue();
         const index = invoices.findIndex(invoice=>invoice.id == id);
-    
-        const newInvoice:Invoice = this.calTotal(invoice,invoice.inventories) 
+        console.log("store"+invoice)
+        const newInvoice:Invoice = this.calTotal(invoice,invoice.invoiceQuantities) 
         // const newInvoice:Invoice ={
         //   ...invoices[index],
         //   ...invoice
@@ -236,13 +237,15 @@ export class InvoiceStore{
       }
 
 
-      private calTotal(invoice:Invoice,stocks:Stock[]){
+      private calTotal(invoice:Invoice,stocks:InvoiceQty[]){
         // const invoice = this.invoiceSubject.getValue();
         invoice.total=0;
         invoice.subTotal=0;
+        invoice.totalLiters =0;
 
         for(let i = 0 ;i<stocks.length;i++){
-            invoice.subTotal += Math.round((stocks[i].sellingPrice*stocks[i].approvedQty) * 100) / 100;
+            invoice.subTotal += Math.round((stocks[i].inventory.sellingPrice*stocks[i].inventory.approvedQty) * 100) / 100;
+            invoice.totalLiters += Math.round((stocks[i].inventory.unitLiters*stocks[i].inventory.approvedQty) * 100) / 100;
         }
         
         invoice.tax =Math.round((invoice.subTotal*0.15 ) * 100) / 100; 
