@@ -1,5 +1,4 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Invoice } from 'src/app/models/invoice.model';
@@ -8,12 +7,12 @@ import { AuthStore } from 'src/app/services/auth/auth.store';
 import { InvoiceStore } from 'src/app/services/invoice/invoice.store';
 
 @Component({
-  selector: 'app-invoice-print',
-  templateUrl: './invoice-print.component.html',
-  styleUrls: ['./invoice-print.component.css']
+  selector: 'app-view-invoice',
+  templateUrl: './view-invoice.component.html',
+  styleUrls: ['./view-invoice.component.css']
 })
-export class InvoicePrintComponent implements OnInit{
-  
+export class ViewInvoiceComponent {
+  user$:Observable<User>;
   invoice$:Observable<Invoice>;
   myDate = new Date();
   datePipe: any;
@@ -22,7 +21,7 @@ export class InvoicePrintComponent implements OnInit{
     //this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
   }
   ngOnInit(): void {
-    
+    this.user$ = this.authStore.user$;
     this.invoiceStore.getInvoiceById(Number(this.route.snapshot.paramMap.get('id')));
     this.invoice$ = this.invoiceStore.invoice$;
   }

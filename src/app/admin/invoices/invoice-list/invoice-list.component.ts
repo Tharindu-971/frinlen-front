@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Table } from 'primeng/table';
 import { Observable, Subject } from 'rxjs';
 import { Invoice } from 'src/app/models/invoice.model';
 import { Stock } from 'src/app/models/stock.model';
@@ -13,6 +14,11 @@ import { InvoiceStore } from 'src/app/services/invoice/invoice.store';
 })
 export class InvoiceListComponent implements OnInit,OnDestroy{
   data:Invoice[];
+  statuses: any[];
+
+  loading: boolean = true;
+
+    activityValues: number[] = [0, 100];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   user$:Observable<User>;
@@ -20,9 +26,15 @@ export class InvoiceListComponent implements OnInit,OnDestroy{
     constructor(private invoiceStore:InvoiceStore,private authStore:AuthStore){}
 
     ngOnInit(): void {
+      this.loading=false;
       this.invoices$ = this.invoiceStore.invoices$
       this.getData();
       this.user$ = this.authStore.user$;
+      this.statuses = [
+        {label: 'APPROVE', value: "APPROVED"},
+        {label: 'PENDING', value: 'PENDING'},
+        {label: 'REJECT', value: 'REJECTED'}
+      ]
     }
 
     getData(){
@@ -32,6 +44,9 @@ export class InvoiceListComponent implements OnInit,OnDestroy{
         this.dtTrigger.next(data);
       })
     }
+    clear(table: Table) {
+      table.clear();
+  }
     ngOnDestroy(): void {
       //this.dtTrigger.unsubscribe();
     }

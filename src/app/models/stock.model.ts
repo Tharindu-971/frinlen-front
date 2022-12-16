@@ -12,6 +12,7 @@ export interface Stock{
     status:string;
     isActive:boolean;
     unitLiters:number;
+    strength:number;
     liters:number;
     approvedQuantity:number;
 }

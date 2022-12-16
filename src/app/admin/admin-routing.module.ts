@@ -13,6 +13,7 @@ import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.compo
 import { InvoicePrintComponent } from './invoices/invoice-print/invoice-print.component';
 import { InvoiceReviewedListComponent } from './invoices/invoice-reviewed-list/invoice-reviewed-list.component';
 import { InvoicesComponent } from './invoices/invoices.component';
+import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.component';
 import { StockCreateComponent } from './stocks/stock-create/stock-create.component';
 import { StockListComponent } from './stocks/stock-list/stock-list.component';
 import { StocksComponent } from './stocks/stocks.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
           { path: 'reviewed-list', component: InvoiceReviewedListComponent },
           { path: ':id/approve', component: InvoiceApproveComponent },
           { path: ':id/print', component: InvoicePrintComponent },
+          { path: ':id/view', component: ViewInvoiceComponent },
           { path: '', component: InvoiceListComponent }
         ]
       }

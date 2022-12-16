@@ -37,6 +37,7 @@ export class TempInvoiceStore {
         isApproved: false,
         number: '',
         reason: '',
+        status: '',
         subTotal: 0,
         tax: 0,
         taxAmount: 0,

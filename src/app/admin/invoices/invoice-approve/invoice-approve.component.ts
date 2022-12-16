@@ -14,7 +14,7 @@ export class InvoiceApproveComponent implements OnInit{
 
   invoice$:Observable<Invoice>;
   userId:number;
-
+  myDate = new Date();
   constructor(private invoiceStore:InvoiceStore,
     private route:ActivatedRoute,
     private router : Router,
@@ -40,6 +40,7 @@ export class InvoiceApproveComponent implements OnInit{
     this.invoiceStore.addReason(invoice.id,invoice);
   }
   submit(invoice:Invoice){
+    invoice.status="APPROVED"
     invoice.approvedBy = this.userId;
     invoice.isApproved = true;
     console.log("approved :",invoice )
@@ -48,6 +49,7 @@ export class InvoiceApproveComponent implements OnInit{
   }
 
   reject(invoice:Invoice){
+    invoice.status="REJECTED"
     invoice.approvedBy = this.userId;
     invoice.isApproved = false;
     console.log("reject :",invoice )

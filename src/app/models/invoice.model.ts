@@ -15,6 +15,7 @@ export interface Invoice{
     isApproved:boolean;
     approvedBy:number;
     reason:string;
+    status:string;
     inventories:Stock[];
     invoiceQuantities:InvoiceQty[];
     customer:Customer;

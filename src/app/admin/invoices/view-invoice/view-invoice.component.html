@@ -168,8 +168,8 @@
                                 </div>
                             </td>
                             <td colspan="3">
-                                <!-- <input type="text" class="form-control"  id="name"
-                                        placeholder="Enter a Lorry number" > -->
+                                <input type="text" class="form-control"  id="name"
+                                        placeholder="Enter a Lorry number" >
                             </td>
                             
                         </tr>
@@ -232,9 +232,9 @@
                             <td>VALUE</td>
                         </tr>
                         <tr *ngFor="let cart of invoice.invoiceQuantities">
-                            <td >{{cart.inventory.code}}</td>
-                            <td colspan="2">{{cart.inventory.name}} - <span style="font-weight: bold;">{{cart.inventory.strength}}</span></td>
-                            <td>{{cart.inventory.unitLiters | number : '1.2-2'}} ml</td>
+                            <td >{{cart.inventory.id}}</td>
+                            <td colspan="2">{{cart.inventory.name}}</td>
+                            <td>{{cart.inventory.unitLiters}} ml</td>
                             <td>{{cart.approvedQuantity}}</td>
                             <td>{{cart.inventory.sellingPrice}}</td>             
                             <td>{{cart.approvedQuantity*(cart.inventory.unitLiters/1000)| number : '1.2-2'}} L</td>
@@ -370,15 +370,12 @@
                         </tbody>
                     </table>
                 </div> -->
-                <div class="col-xl-6">
+                <div class="col-xl-6" *ngIf="(user$|async) as user">
                     <div class="card">
                         <div class="card-body">
                             <div class="btn-group d-flex align-items-end">
-                                <button type="button" class="btn  btn-primary btn-lg btn-block"
-                                    (click)="submit(invoice)">Approve</button>
-                                <button type="button" class="btn  btn-danger btn-lg btn-block"
-                                    (click)="reject(invoice)">Reject</button>
-
+                                <button *ngIf="user.roles.includes('ROLE_ADMIN')" [routerLink]="['/protected/invoices/',invoice.id,'approve']" type="submit"  class="btn me-2 btn-warning">Edit</button>
+                    <button [routerLink]="['/protected/invoices']" class="btn btn-light">Back</button>
                             </div>
                         </div>
                     </div>

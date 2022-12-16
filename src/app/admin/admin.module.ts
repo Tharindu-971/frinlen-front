@@ -25,6 +25,20 @@ import { InvoicePrintComponent } from './invoices/invoice-print/invoice-print.co
 import { NgxPrintModule } from 'ngx-print';
 import {DataTablesModule} from 'angular-datatables';
 
+import {ChipsModule} from 'primeng/chips';
+import {TableModule} from 'primeng/table';
+import {ToastModule} from 'primeng/toast';
+import {CalendarModule} from 'primeng/calendar';
+import {SliderModule} from 'primeng/slider';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {ContextMenuModule} from 'primeng/contextmenu';
+import {DialogModule} from 'primeng/dialog';
+import {ButtonModule} from 'primeng/button';
+import {DropdownModule} from 'primeng/dropdown';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {InputTextModule} from 'primeng/inputtext';
+import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +59,8 @@ import {DataTablesModule} from 'angular-datatables';
     InvoiceListComponent,
     InvoiceReviewedListComponent,
     InvoiceApproveComponent,
-    InvoicePrintComponent
+    InvoicePrintComponent,
+    ViewInvoiceComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +69,18 @@ import {DataTablesModule} from 'angular-datatables';
     ReactiveFormsModule,
     NgxPrintModule,
     DataTablesModule,
+    TableModule,
+    CalendarModule,
+		SliderModule,
+		DialogModule,
+		MultiSelectModule,
+		ContextMenuModule,
+		DropdownModule,
+		ButtonModule,
+		ToastModule,
+    InputTextModule,
+    ProgressBarModule,
+    ChipsModule,
     ToastrModule.forRoot()
   ]
 })
