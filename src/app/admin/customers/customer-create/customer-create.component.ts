@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Agent } from 'src/app/models/agent.model';
+import { AgentStore } from 'src/app/services/agent/agent.store';
 import { CustomerStore } from 'src/app/services/customer/customer.store';
 
 @Component({
@@ -9,8 +13,10 @@ import { CustomerStore } from 'src/app/services/customer/customer.store';
 })
 export class CustomerCreateComponent implements OnInit {
   customerForm:FormGroup;
+  agents:Agent[]=[];
+  agents$:Observable<Agent[]>;
 
-  constructor(private fb:FormBuilder,private customerStore:CustomerStore){
+  constructor(private fb:FormBuilder,private customerStore:CustomerStore,private agentStore: AgentStore,private router:Router){
 
   }
   ngOnInit(): void {
@@ -21,10 +27,24 @@ export class CustomerCreateComponent implements OnInit {
       vatNo:[''],
       address1:['',[Validators.required]],
       address2:[''],
+      agentId:[''],
       isActive:[true]
     })
+    this.getAgents()
   }
 
+  changeAgent(e) {
+    console.log(e.value)
+    this.f['agentId'].patchValue( Number(e.target.value));
+    console.log('customer form  :::',this.customerForm.value)
+  }
+  getAgents(){
+    this.agentStore.agents$.subscribe(data =>{
+      console.log("ddddd",data)
+        this.agents = data;
+      
+    })
+  }
   get f(): { [key: string]: AbstractControl } {
     return this.customerForm.controls;
   }
@@ -33,9 +53,11 @@ export class CustomerCreateComponent implements OnInit {
     if(this.customerForm.valid){
       this.customerStore.createCustomer(form.value).subscribe(()=>this.customerForm.reset());
     }
+    this.router.navigate(['/protected/customers'])
   }
   cancel(){
     this.customerForm.reset();
+    this.router.navigate(['/protected/customers'])
   }
 
 }

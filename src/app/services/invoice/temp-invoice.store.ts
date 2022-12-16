@@ -13,9 +13,9 @@ export class TempInvoiceStore {
 
     agent: Agent = {
         id: 0,
-        agentEmail: '',
-        agentMobile: '',
-        agentName: '',
+        email: '',
+        mobile: '',
+        name: '',
         customers: []
     }
 

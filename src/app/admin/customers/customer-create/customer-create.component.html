@@ -2,7 +2,10 @@
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">Customer Create</h4>
+            <button class="btn btn-success btn-sm" style="margin-left: 200px;"
+        [routerLink]="['/protected/agents/create']">Create Sales Agent</button>
         </div>
+        
         <div class="card-body">
             <div class="form-validation">
                 <form [formGroup]="customerForm" (ngSubmit)="onSubmit(customerForm)" class="needs-validation"
@@ -60,6 +63,19 @@
                                     </div>
                                 </div>
 
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-lg-4 col-form-label" for="address1">Select Sales Manager</label>
+                                <div class="col-lg-6 d-flex">
+                                    <select class="nice-select default-select wide form-control open" (change)="changeAgent($event)" formControlName="agentId">
+                                        <option data-display="Select" class="option selected focus" value="">Choose Sales Manager</option>
+                                        <option class="option" *ngFor="let city of agents" [value]="city.id">{{city.name}}</option>
+                                      </select>
+                                      
+                                      
+                                    
+                                </div>
+                                
                             </div>
 
                         </div>

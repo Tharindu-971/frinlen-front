@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleGuard } from '../guard/role.guard';
 import { AdminComponent } from './admin.component';
+import { AgentCreateComponent } from './agent/agent-create/agent-create.component';
 import { AgentListComponent } from './agent/agent-list/agent-list.component';
 import { AgentComponent } from './agent/agent.component';
 import { CustomerCreateComponent } from './customers/customer-create/customer-create.component';
@@ -23,7 +24,7 @@ const routes: Routes = [
     path: '', component: AdminComponent, children: [
       {
         path: 'agents', component: AgentComponent, children: [
-          { path: 'create', component: AgentComponent },
+          { path: 'create', component: AgentCreateComponent },
           { path: '', component: AgentListComponent }
         ]
       },

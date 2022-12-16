@@ -36,19 +36,20 @@ export class AgentStore{
         this.loadingService.showLoaderUntillCompleted(loadAgents$).subscribe();
       }
     
-      createCustomer(agent:Agent):Observable<any>{
+      createAgent(agent:Agent):Observable<any>{
         const agents = this.subject.getValue();
         agents.push(agent);
         this.subject.next(agents);
-        return this.http.post<any>(`${environment.apiUrl}/Agents`,agent)
+        return this.http.post<any>(`${environment.apiUrl}/agents`,agent)
           .pipe(
             map(response=>{
-              if(response.statusCodeValue ==201){
-                this.toastr.success("Agent Created Successfully")
-              }else{
-                this.toastr.warning("Could not Create Agent")
+              if(response){
+                  this.toastr.success("Agent Created Successfully")
+                }else{
+                  this.toastr.warning("Could not Create Agent")
+                }
               }
-            }),
+            ),
             catchError(err=>{
               this.toastr.error("Could not Create Agent");
               console.log("Agentstore:createAgent",err)
