@@ -98,9 +98,12 @@ export class InvoiceCreateForApprovalComponent implements OnInit{
     this.stockStore.searchStock(value);
   }
 
-  addToCart(id:number,stock:Stock){
-    stock.invoiceQty=1;
-    this.tempInvoiceStore.addItem(id,stock)
+  addToCart(event:any){
+    //stock.invoiceQty=1;
+    let stock :Stock = event as Stock;
+    stock.invoiceQty =1;
+    
+    this.tempInvoiceStore.addItem(stock.id,stock)
     
     this.stockStore.clearSeach()
   }
@@ -120,8 +123,9 @@ export class InvoiceCreateForApprovalComponent implements OnInit{
     this.customerStore.searchCustomer(value);
   }
 
-  addCustomer(customer:Customer){
-    this.tempInvoiceStore.addCustomer(customer)
+  addCustomer(event:any){
+    console.log("customer: ",event as Customer)
+    this.tempInvoiceStore.addCustomer(event as Customer)
     this.customerStore.clearCustomer()
   }
 
@@ -132,4 +136,30 @@ export class InvoiceCreateForApprovalComponent implements OnInit{
     this.router.navigate(['/protected/invoices/'])
     
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  val: Stock;
+  val2: Customer;
+
+    results: Stock[];
+
+    search(event) {
+        this.stockStore.searchStock(event.query);
+    }
+    search2(event) {
+        this.customerStore.searchCustomer(event.query);
+    }
+
 }

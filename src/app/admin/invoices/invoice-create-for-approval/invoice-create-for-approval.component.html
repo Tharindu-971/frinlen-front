@@ -1,63 +1,23 @@
 <div>
-    <div class="col-xl-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Search Item</h4>
-            </div>
-            <div class="card-body">
-                <div class="basic-form">
-                    <form class="form-valide-with-icon needs-validation" novalidate="">
-                        <div class="mb-3">
-                            <!-- <label class="text-label form-label" for="validationCustomUsername">Username</label> -->
-                            <div class="input-group">
-                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                                <input type="text" class="form-control" #search (keyup)="searchProduct(search.value)"
-                                    placeholder="Search.." required="">
-                                <div class="help-block has-error">
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-4 order-lg-2 mb-4">
-                                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="text-muted">Select one..</span>
-
-                                </h4>
-                                <ul class="list-group mb-3" *ngIf="(filterStocks$ | async) as stocks">
-
-                                    <li class="list-group-item d-flex justify-content-between lh-condensed"
-                                        *ngFor="let product of stocks" (click)="addToCart(product.id,product)">
-                                        <div>
-                                            <h6 class="my-0">{{product.name}}</h6>
-                                            <small class="text-muted">{{product.name}}</small>
-                                        </div>
-                                        <span class="text-muted">{{product.quantity}}</span>
-                                        <span class="text-muted">LKR {{product.sellingPrice}}</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
 
 
 
     <div class="col-xl-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row" *ngIf="(invoice$|async) as invoice">
+        <div class="card" *ngIf="(invoice$|async) as invoice">
+            <div class="card-body" *ngIf="(filterStocks$ | async) as stocks">
+
+                <div class="row" >
+                    
                     <div class="col-lg-6 order-lg-2 " >
+                        <h4 class="mb-3">Cart Details</h4>
+                        <div class="mb-3">
+                            <label class="text-label form-label" for="validationCustomUsername">Search Item</label>
+                            <div class="input-group">
+                                <p-autoComplete  autocomplete [showClear]="true" [suggestions]="stocks" (onSelect)="addToCart($event)" (completeMethod)="search($event)" field="name"></p-autoComplete>
+                            </div>
+                        </div>
                         <h4 class="d-flex justify-content-between align-items-center">
                             <span class="text-muted">Your cart</span>
                             <span class="badge badge-primary badge-pill">{{invoice.number}}</span>
@@ -103,66 +63,27 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <h4 class="mb-3">Billing Details</h4>
-
-                        <div class="card-body">
-                            <div class="basic-form">
-                                <form class="form-valide-with-icon needs-validation" novalidate="">
-                                    <div class="mb-3">
-
-                                        <div class="input-group">
-                                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                                            <input type="text" class="form-control" #custom
-                                                (keyup)="searchCustomer(custom.value)" placeholder="Search.."
-                                                required="">
-                                            <div class="help-block has-error">
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-12 order-lg-2 ">
-                                            <h4 class="d-flex justify-content-between align-items-center ">
-                                                <span class="text-muted">Select one..</span>
-
-                                            </h4>
-                                            <ul class="list-group "  *ngIf="(filterCustomers$ | async) as customers">
-
-                                                <li class="list-group-item d-flex justify-content-between lh-condensed"
-                                                        *ngFor="let customer of customers"
-                                                        (click)="addCustomer(customer)">
-                                                        <div>
-                                                            <h6 class="my-0">{{customer.name}}</h6>
-                                                           
-                                                        </div>
-                                                        <span class="text-muted">{{customer.mobile}}</span>
-                                                        <span class="text-muted">{{customer?.agent?.name}}</span>
-                                                    </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                    <div class="col-lg-6 order-lg-1"*ngIf="(filterCustomers$ | async) as customers">
+                        <h4 class="mb-3">Customer Details</h4>
+                        <form class="form-valide-with-icon needs-validation" novalidate="">
+                            <div class="mb-3">
+                                <label>Search Customer</label>
+                                <div class="input-group">
+                                    <p-autoComplete  autocomplete [showClear]="true" [suggestions]="customers" (onSelect)="addCustomer($event)" (completeMethod)="search2($event)" field="name"></p-autoComplete>
                                 </div>
                             </div>
-                        </div>
+
+                        </form>
+                        
 
 
 
 
 
                         <div class="card-body pb-3" *ngIf="invoice.customer.id!=0">
-                            <h4>Customer Details</h4>
+                            <h4>{{invoice.customer.name}}</h4>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex px-0 justify-content-between">
-                                    <strong>Name</strong>
-                                    <span class="mb-0">{{invoice.customer.name}}</span>
-                                </li>
+
                                 <li class="list-group-item d-flex px-0 justify-content-between">
                                     <strong>Mobile</strong>
                                     <span class="mb-0">{{invoice.customer.mobile}}</span>
@@ -179,11 +100,12 @@
                         </div>
 
 
-                        <button (click)="submit(invoice)" class="btn btn-primary btn-lg btn-block">SUBMIT FOR APPROVE</button>
+                        
                     </div>
 
                 </div>
             </div>
+            <button (click)="submit(invoice)" style="max-width: 400px; margin: auto;" class="btn btn-primary btn-lg btn-block">SUBMIT FOR APPROVE</button>
         </div>
     </div>
 </div>

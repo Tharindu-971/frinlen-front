@@ -235,7 +235,12 @@
                             <td >{{cart.inventory.code}}</td>
                             <td colspan="2">{{cart.inventory.name}} - <span style="font-weight: bold;">{{cart.inventory.strength}}</span></td>
                             <td>{{cart.inventory.unitLiters | number : '1.2-2'}} ml</td>
-                            <td>{{cart.approvedQuantity}}</td>
+                            <td>
+                                <input type="number" [value]="cart.approvedQuantity"
+                                    (keyup)="addApprovedAmount(invoice.id,cart.id,approvedAmount.value)"
+                                    class="form-control" #approvedAmount>
+                                <div class="help-block has-error"></div>
+                            </td>
                             <td>{{cart.inventory.sellingPrice}}</td>             
                             <td>{{cart.approvedQuantity*(cart.inventory.unitLiters/1000)| number : '1.2-2'}} L</td>
                             <td>Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity | number : '1.2-2'}}</td>

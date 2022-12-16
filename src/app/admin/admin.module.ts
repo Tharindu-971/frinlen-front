@@ -38,6 +38,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {InputTextModule} from 'primeng/inputtext';
 import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.component';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.compo
 		ContextMenuModule,
 		DropdownModule,
 		ButtonModule,
+    AutoCompleteModule,
 		ToastModule,
     InputTextModule,
     ProgressBarModule,
