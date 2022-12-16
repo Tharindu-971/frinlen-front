@@ -29,7 +29,8 @@ export class CustomerStore {
   private loadCustomers() {
     const loadCustomers$ = this.http.get<Customer[]>(`${environment.apiUrl}/customers`)
       .pipe(
-        map(response => response),
+        map(response => { console.log(response);return response; }),
+        
         catchError(err => {
           const message = "Could not load customers";
           this.toastr.error(message);

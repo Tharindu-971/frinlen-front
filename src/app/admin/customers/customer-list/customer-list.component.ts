@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Table } from 'primeng/table';
+import { Observable, Subject } from 'rxjs';
+import { Agent } from 'src/app/models/agent.model';
 import { Customer } from 'src/app/models/customer.model';
+import { AgentStore } from 'src/app/services/agent/agent.store';
 import { CustomerStore } from 'src/app/services/customer/customer.store';
 
 @Component({
@@ -8,27 +11,33 @@ import { CustomerStore } from 'src/app/services/customer/customer.store';
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css']
 })
-export class CustomerListComponent implements OnInit,OnDestroy{
-  data:Customer[]=[]
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject<any>();
-  
+export class CustomerListComponent implements OnInit{
+  customers$:Observable<Customer[]>;
+  agents$:Observable<Agent[]>;
+  loading: boolean = true;
+  agents:Agent[]=[];
+  representatives:Agent[]=[];
+
   ngOnInit(): void {
-    this.getData();
+    this.customers$ = this.customerStore.customers$;
+    this.loading=false;
+    this.getAgents();
   }
-  
-  
 
-  constructor(private customerStore:CustomerStore){}
-
-  getData(){
-    this.customerStore.customers$.subscribe(data=>{
-      this.data = data
-      console.log(this.data)
-      this.dtTrigger.next(data);
+  getAgents(){
+    this.agentStore.agents$.subscribe(data =>{
+      
+        this.agents = data;
+      
     })
   }
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-  }
+  
+  
+
+  constructor(private customerStore:CustomerStore,private agentStore:AgentStore){}
+
+  clear(table: Table) {
+    table.clear();
+}
+    
 }

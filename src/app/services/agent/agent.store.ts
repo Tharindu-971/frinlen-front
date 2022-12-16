@@ -11,7 +11,7 @@ import { LoadingService } from "../loading/loading.service";
 })
 export class AgentStore{
     private subject = new BehaviorSubject<Agent[]>([]);
-    agents:Observable<Agent[]> = this.subject.asObservable();
+    agents$:Observable<Agent[]> = this.subject.asObservable();
 
     constructor(private http: HttpClient,
         private toastr: ToastrService,
