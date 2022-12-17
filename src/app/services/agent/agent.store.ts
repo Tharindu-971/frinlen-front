@@ -45,6 +45,7 @@ export class AgentStore{
             map(response=>{
               if(response){
                   this.toastr.success("Agent Created Successfully")
+                  this.loadAgents();
                 }else{
                   this.toastr.warning("Could not Create Agent")
                 }
