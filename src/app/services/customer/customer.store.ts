@@ -52,6 +52,7 @@ export class CustomerStore {
         map(response=>{
           if(response){
               this.toastr.success("Customer Created Successfully")
+              this.loadCustomers();
             }else{
               this.toastr.warning("Could not Create Customer")
             }

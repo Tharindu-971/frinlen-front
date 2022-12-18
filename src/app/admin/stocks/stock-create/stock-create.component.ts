@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { merge } from 'rxjs';
 import { StockStore } from 'src/app/services/stock/stock.store';
 
@@ -14,7 +15,7 @@ export class StockCreateComponent implements OnInit{
   dissable:boolean = true;
   productCode:number=0;
 
-  constructor(private fb:FormBuilder,private stockStore:StockStore){}
+  constructor(private fb:FormBuilder,private stockStore:StockStore,private router:Router){}
   
   ngOnInit(): void {
 
@@ -70,6 +71,7 @@ export class StockCreateComponent implements OnInit{
     if(this.stockForm.valid){
       console.log("llliter",form.value)
       this.stockStore.createStock(form.value).subscribe(()=>this.stockForm.reset())
+      this.router.navigate(['/protected/stocks'])
     }
   }
 
