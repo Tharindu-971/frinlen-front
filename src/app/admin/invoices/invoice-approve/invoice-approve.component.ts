@@ -15,6 +15,7 @@ export class InvoiceApproveComponent implements OnInit{
   invoice$:Observable<Invoice>;
   userId:number;
   myDate = new Date();
+  deliveryDate = new Date();
   constructor(private invoiceStore:InvoiceStore,
     private route:ActivatedRoute,
     private router : Router,

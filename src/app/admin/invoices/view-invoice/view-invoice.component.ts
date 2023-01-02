@@ -15,6 +15,7 @@ export class ViewInvoiceComponent {
   user$:Observable<User>;
   invoice$:Observable<Invoice>;
   myDate = new Date();
+  deliveryDate = new Date();
   datePipe: any;
 
   constructor(private invoiceStore:InvoiceStore,private route:ActivatedRoute,private authStore:AuthStore){

@@ -10,7 +10,7 @@
                     <div class="row align-items-center">
                         <div class="col-sm-12">
                             <div class="brand-logo mb-3">
-                                <img class="logo-abbr me-2" width="100" height="100" src="assets/images/finnland.png"
+                                <img class="logo-abbr me-2" width="240" height="200" src="assets/images/finnland.png"
                                     alt="">
 
                             </div>
@@ -69,7 +69,7 @@
                                     <div>:</div>
                                 </div>
                             </td>
-                            <td colspan="3">{{myDate | date: 'shortDate' }}</td>
+                            <td colspan="3">{{myDate | date: 'dd.MM.yyyy' }}</td>
                             
                         </tr>
                         <tr>
@@ -98,7 +98,7 @@
                                 </div>
                             </td>
                             
-                            <td colspan="3" >{{invoice.customer.address1}}</td>
+                            <td colspan="3" rowspan="5" >{{invoice.customer.address1}}</td>
                             <td >
                                 <div class="test">
                                     <div>Order No.</div>
@@ -109,7 +109,7 @@
                             
                         </tr>
                         <tr>
-                            <td colspan="4" rowspan="4" ></td>
+                            <td  rowspan="4" ></td>
                             <td >
                                 <div class="test">
                                     <div>District</div>
@@ -149,7 +149,10 @@
                                     <div>:</div>
                                 </div>
                             </td>
-                            <td colspan="2"></td>
+                            <td colspan="3">
+                                <input type="text" class="form-control form-control-sm"  id="cst"
+                                placeholder="Enter a CST number" >
+                            </td>
                             
                         </tr>
                         <tr>
@@ -171,7 +174,6 @@
                                 <!-- <input type="text" class="form-control"  id="name"
                                         placeholder="Enter a Lorry number" > -->
                             </td>
-                            
                         </tr>
                         <tr>
                             <td >
@@ -191,7 +193,9 @@
                                     <div>:</div>
                                 </div>
                             </td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <p-calendar inputId="basic" [(ngModel)]="deliveryDate" dateFormat="dd.mm.yy"></p-calendar>
+                            </td>
                             
                         </tr>
                         <!-- <tr>

@@ -25,6 +25,7 @@ import { InvoicePrintComponent } from './invoices/invoice-print/invoice-print.co
 import { NgxPrintModule } from 'ngx-print';
 import {DataTablesModule} from 'angular-datatables';
 
+
 import {ChipsModule} from 'primeng/chips';
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
