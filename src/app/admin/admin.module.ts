@@ -40,6 +40,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import {InputTextModule} from 'primeng/inputtext';
 import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.component';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import { TextTransformPipe } from '../text.pipe';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     InvoiceReviewedListComponent,
     InvoiceApproveComponent,
     InvoicePrintComponent,
-    ViewInvoiceComponent
+    ViewInvoiceComponent,
+    TextTransformPipe
   ],
   imports: [
     CommonModule,

@@ -4,7 +4,7 @@
 
         <div  class="card-body" *ngIf="(invoice$ |async) as invoice">
             <div id="demo">
-                <div  class="row mb-5">
+                <div  class="row">
 
                     <div
                         class="mt-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-lg-center justify-content-md-center justify-content-xs-start">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <div  class="table-responsive">
+                <div  class="table-responsive" style="width: 85%; margin: auto;">
                     <table  class="table table-bordered">
                         <!-- <thead>
                             <tr>
@@ -45,15 +45,11 @@
                             <tr><td class="table-center" colspan="8">Tel. No:011-2331125        Email:accounts@finnland.lk</td></tr>
                             <tr><td class="table-center" colspan="8" style="font-size: 26px; font-weight: bold;">TAX INVOICE</td></tr>
                             <tr>
-                                <td rowspan="2"  colspan="8"></td>
+                                <td   colspan="8" style="height: 50px;"></td>
                                 <!-- <td class="table-right">INVOICE NO</td>
                                 <td>{{invoice.number}}</td> -->
                             </tr>
-                            <tr>
-    
-                                <!-- <td class="table-right">DELEVERY DATE</td>
-                                <td class="table-cell-width">2022-11-29</td> -->
-                            </tr>
+                            
                             <tr>
                                 <td >
                                     <div class="test">
@@ -99,7 +95,7 @@
                                     </div>
                                 </td>
                                 
-                                <td colspan="3" rowspan="5" >{{invoice.customer.address1}}</td>
+                                <td colspan="3" rowspan="5"  [innerHTML]="invoice.customer.address1 | texttransform"> </td>
                                 <td >
                                     <div class="test">
                                         <div>Order No.</div>
@@ -151,7 +147,7 @@
                                     </div>
                                 </td>
                                 <td colspan="3">
-                                        <input type="text" class="form-control form-control-sm"  id="cst"
+                                        <input type="text" style="height: 0px;" class="form-control form-control-sm"  id="cst"
                                                 placeholder="Enter a CST number" >
                                 </td>
                                 
@@ -172,10 +168,11 @@
                                     </div>
                                 </td>
                                 <td colspan="3">
-                                    <div class="form-group">
+                                    <div class="form-group" >
                                         
-                                        <select class="form-control" id="exampleFormControlSelect1">
-                                          <option>LO-4872</option>
+                                        <select style="height: 30px;" class="form-control" id="exampleFormControlSelect1">
+                                            <option selected>Select Lorry No</option>
+                                            <option>LO-4872</option>
                                           <option>LO-4881</option>
                                           <option>LO-5760</option>
                                           <option>LO-5761</option>
@@ -204,7 +201,7 @@
                                     </div>
                                 </td>
                                 <td colspan="3">
-                                    <p-calendar inputId="basic" [(ngModel)]="deliveryDate" dateFormat="dd.mm.yy"></p-calendar>
+                                    <p-calendar  inputId="basic" [(ngModel)]="deliveryDate" dateFormat="dd.mm.yy"></p-calendar>
                                 </td>
                                 
                             </tr>
@@ -234,7 +231,7 @@
                             </tr> -->
     
                             <tr>
-                                <td></td>
+                                <td colspan="8" style="height: 50px;"></td>
                             </tr>
                             <tr>
                                 <td>PRODUCT CODE</td>
@@ -280,13 +277,14 @@
                             </tr>
     
                             <tr>
-                                <td colspan="8"></td>
+                                <td colspan="8"  style="height: 50px;"></td>
                             </tr>
+                            
                             <tr>
                                 <td  colspan="8" >Cheques should be drawn in favour of <strong>"Finnland Distilleries Corporation (pvt) Ltd"</strong></td>
                             </tr>
                             <tr>
-                                <td colspan="8"></td>
+                                <td colspan="8" style="height: 30px;"></td>
                             </tr>
                             <tr><td class="table-center" colspan="8" style="font-weight: bold;font-size: 14px;"><u>Acknowledgment of Goods</u></td></tr> 
                             
@@ -391,7 +389,7 @@
                         <div class="card-body">
                             <div class="btn-group d-flex align-items-end">
                                 <button type="button" class="btn  btn-primary btn-lg btn-block" printSectionId="demo"  ngxPrint 
-                                printTitle="FINNLAND DISTILLERIES CORPORATION (PVT) LTD" [useExistingCss]="true"  >Print</button>
+                                [printTitle]="invoice.id.toString()" [useExistingCss]="true"  >Print</button>
                                 
                             </div>
                         </div>

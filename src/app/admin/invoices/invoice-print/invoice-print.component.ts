@@ -6,6 +6,7 @@ import { Invoice } from 'src/app/models/invoice.model';
 import { User } from 'src/app/models/user.model';
 import { AuthStore } from 'src/app/services/auth/auth.store';
 import { InvoiceStore } from 'src/app/services/invoice/invoice.store';
+import { TextTransformPipe } from 'src/app/text.pipe';
 
 @Component({
   selector: 'app-invoice-print',

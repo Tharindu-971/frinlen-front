@@ -21,7 +21,7 @@ import {DataTablesModule} from 'angular-datatables';
   declarations: [
     AppComponent,
     LoginComponent,
-    LoadingComponent,
+    LoadingComponent
 
 
   ],
