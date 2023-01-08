@@ -40,21 +40,15 @@ export class InvoiceApproveComponent implements OnInit{
     console.log("reason :",invoice)
     this.invoiceStore.addReason(invoice.id,invoice);
   }
-  submit(invoice:Invoice){
-    invoice.status="APPROVED"
-    invoice.approvedBy = this.userId;
-    invoice.isApproved = true;
-    console.log("approved :",invoice )
-    this.invoiceStore.approveInvoice(invoice.id,invoice).subscribe();
+  submit(id:number){
+    
+    this.invoiceStore.approveInvoice(id,this.userId,true).subscribe();
     this.router.navigate(['/protected/invoices'])
   }
 
-  reject(invoice:Invoice){
-    invoice.status="REJECTED"
-    invoice.approvedBy = this.userId;
-    invoice.isApproved = false;
-    console.log("reject :",invoice )
-    this.invoiceStore.approveInvoice(invoice.id,invoice).subscribe();
+  reject(id:number){
+    
+    this.invoiceStore.approveInvoice(id,this.userId,false).subscribe();
     this.router.navigate(['/protected/invoices'])
   }
 

@@ -149,6 +149,7 @@ export class InvoiceStore{
           .pipe(
             map(response => {
               if(response){
+                console.log("resposne liters",response)
                 this.invoiceSubject.next(response)
               }
             }),
@@ -181,6 +182,7 @@ export class InvoiceStore{
             const newInvoice: Invoice = invoices[index]
             const newInvoices: Invoice[] = invoices.slice(0);
             newInvoices[index] = newInvoice;
+            console.log("apprrppppppp: ",newInvoice)
             this.subject.next(newInvoices)
           }
         }
@@ -200,20 +202,34 @@ export class InvoiceStore{
         this.subject.next(newInvoices);
       }
       
-      approveInvoice(id:number,invoice:Invoice):Observable<any>{
+      approveInvoice(id:number,userId:number,isApproved:boolean):Observable<any>{
         const invoices = this.subject.getValue();
         const index = invoices.findIndex(invoice=>invoice.id == id);
-        console.log("store"+invoice)
-        const newInvoice:Invoice = this.calTotal(invoice,invoice.invoiceQuantities) 
+        
+        const newInvoice: Invoice = invoices[index] 
+        newInvoice.approvedBy = userId;
+        if(isApproved){
+          newInvoice.isApproved=true;
+          newInvoice.status="APPROVED" 
+        }else{
+          newInvoice.isApproved=false;
+        newInvoice.status="REJECTED" 
+        }
+
+        console.log("new Invoice: ",newInvoice)
+            
+
+        const updatedInvoice:Invoice = this.calTotal2(newInvoice,newInvoice.invoiceQuantities) 
         // const newInvoice:Invoice ={
         //   ...invoices[index],
         //   ...invoice
         // } 
         const newInvoices : Invoice[]=invoices.slice(0);
-        newInvoices[index] = newInvoice;
+        newInvoices[index] = updatedInvoice;
         this.subject.next(newInvoices);
+        console.log("dddddddd:",updatedInvoice)
 
-        return this.http.post<any>(`${environment.apiUrl}/invoices/approve/${id}`,invoice)
+        return this.http.post<any>(`${environment.apiUrl}/invoices/approve/${id}`,updatedInvoice)
         .pipe(
           map(response =>{
             
@@ -240,6 +256,7 @@ export class InvoiceStore{
 
       private calTotal(invoice:Invoice,stocks:InvoiceQty[]){
         // const invoice = this.invoiceSubject.getValue();
+        console.log("stockssssss",stocks)
         invoice.total=0;
         invoice.subTotal=0;
         invoice.totalLiters =0;
@@ -247,11 +264,48 @@ export class InvoiceStore{
         for(let i = 0 ;i<stocks.length;i++){
             invoice.subTotal += Math.round((stocks[i].inventory.sellingPrice*stocks[i].inventory.approvedQty) * 100) / 100;
             invoice.totalLiters += Math.round((stocks[i].inventory.unitLiters*stocks[i].inventory.approvedQty) * 100) / 100;
+
+            console.log("fffffffffff1selli",stocks[i].inventory.sellingPrice)
+            console.log("fffffffffff2appro",stocks[i].inventory.approvedQuantity)
         }
-        
+        console.log("totlal liters : ",invoice.totalLiters)
         invoice.tax =Math.round((invoice.subTotal*0.15 ) * 100) / 100; 
         invoice.total = Math.round((invoice.subTotal+invoice.tax) * 100) / 100;
         //this.invoiceSubject.next(invoice);
         return invoice;
+    }
+
+    private calTotal2(invoice:Invoice,stocks:InvoiceQty[]){
+      // const invoice = this.invoiceSubject.getValue();
+      console.log("stockssssss",stocks)
+      invoice.total=0;
+      invoice.subTotal=0;
+      invoice.totalLiters =0;
+
+      for(let i = 0 ;i<stocks.length;i++){
+          invoice.subTotal += Math.round((stocks[i].inventory.sellingPrice*stocks[i].approvedQuantity) * 100) / 100;
+          invoice.totalLiters += Math.round((stocks[i].inventory.unitLiters*stocks[i].approvedQuantity) * 100) / 100;
+
+          console.log("fffffffffff1selli",stocks[i].inventory.sellingPrice)
+          console.log("fffffffffff2appro",stocks[i].approvedQuantity)
+      }
+      console.log("totlal liters : ",invoice.totalLiters)
+      invoice.tax =Math.round((invoice.subTotal*0.15 ) * 100) / 100; 
+      invoice.total = Math.round((invoice.subTotal+invoice.tax) * 100) / 100;
+      //this.invoiceSubject.next(invoice);
+      return invoice;
+  }
+
+    addLorry(id:number,invoice:Invoice){
+      const invoices = this.subject.getValue();
+        const index = invoices.findIndex(invoice=>invoice.id == id);
+    
+        const newInvoice:Invoice ={
+          ...invoices[index],
+          ...invoice
+        } 
+        const newInvoices : Invoice[]=invoices.slice(0);
+        newInvoices[index] = newInvoice;
+        this.subject.next(newInvoices);
     }
 }

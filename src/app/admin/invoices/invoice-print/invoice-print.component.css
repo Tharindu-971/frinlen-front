@@ -2,6 +2,8 @@
     text-align: center;
 }
 
+
+
 .table-right{
     text-align: end;
 }
@@ -11,6 +13,8 @@
     width: 200px; */
 }
 .test{
+    margin-left: 10px;
+    margin-right: 10px;
     display: flex;
     justify-content: space-between;
 }
@@ -19,7 +23,7 @@ td[rowspan] {
     text-align: left;
   }
 
-  .table th, .table td {
-
+  .table th, .table tr, .table td {
+    border: none !important;
     padding: 0 !important;
 }

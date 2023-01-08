@@ -252,7 +252,7 @@
                         <tr>
                             <td colspan="5"></td>
                             <td >Total Liters</td>
-                            <td colspan="2">{{invoice.totalLiters | number : '1.2-2'}} L</td>
+                            <td colspan="2">{{(invoice.totalLiters/1000) | number : '1.2-2'}} L</td>
 
                            
                         </tr>
@@ -384,9 +384,9 @@
                         <div class="card-body">
                             <div class="btn-group d-flex align-items-end">
                                 <button type="button" class="btn  btn-primary btn-lg btn-block"
-                                    (click)="submit(invoice)">Approve</button>
+                                    (click)="submit(invoice.id)">Approve</button>
                                 <button type="button" class="btn  btn-danger btn-lg btn-block"
-                                    (click)="reject(invoice)">Reject</button>
+                                    (click)="reject(invoice.id)">Reject</button>
 
                             </div>
                         </div>

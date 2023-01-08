@@ -23,9 +23,23 @@ export class InvoicePrintComponent implements OnInit{
   constructor(private invoiceStore:InvoiceStore,private route:ActivatedRoute,private authStore:AuthStore){
     //this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
   }
+  lorryList:any[]=[
+    {id:1,number:'LO-4872',ctsNo:'802203'},
+    {id:2,number:'LO-4881',ctsNo:'802204'},
+    {id:1,number:'LO-5760',ctsNo:'802201'},
+    {id:1,number:'LO-5761',ctsNo:'802202'},
+    {id:1,number:'PY-2396',ctsNo:'802205'}
+  ]
   ngOnInit(): void {
     
     this.invoiceStore.getInvoiceById(Number(this.route.snapshot.paramMap.get('id')));
     this.invoice$ = this.invoiceStore.invoice$;
+  }
+  onSeleceted(id:any,invoice:Invoice){
+    console.log("iddd: ",id)
+    const lorry = this.lorryList.find(e=>e.id==id);
+    invoice.lorryNo=lorry.number;
+    invoice.ctsNo=lorry.ctsNo;
+    this.invoiceStore.addLorry(invoice.id,invoice);
   }
 }

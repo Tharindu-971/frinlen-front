@@ -20,4 +20,6 @@ export interface Invoice{
     invoiceQuantities:InvoiceQty[];
     customer:Customer;
     agent:Agent;
+    lorryNo?:string;
+    ctsNo?:string;
 }
