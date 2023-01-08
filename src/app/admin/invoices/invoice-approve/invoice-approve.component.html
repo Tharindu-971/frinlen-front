@@ -98,7 +98,7 @@
                                 </div>
                             </td>
                             
-                            <td colspan="3" rowspan="5" >{{invoice.customer.address1}}</td>
+                            <td colspan="3" rowspan="5" [innerHTML]="invoice.customer.address1 | texttransform"></td>
                             <td >
                                 <div class="test">
                                     <div>Order No.</div>
@@ -230,6 +230,7 @@
                             <td>PRODUCT CODE</td>
                             <td colspan="2">DESCRIPTION</td>
                             <td >VOLUMN</td>
+                            <td>REQUESTED QTY</td>
                             <td>QTY</td>
                             <td>RATE PER BOTTLE</td>
                             <td>LITERS</td>
@@ -239,6 +240,7 @@
                             <td >{{cart.inventory.code}}</td>
                             <td colspan="2">{{cart.inventory.name}} - <span style="font-weight: bold;">{{cart.inventory.strength}}</span></td>
                             <td>{{cart.inventory.unitLiters | number : '1.2-2'}} ml</td>
+                            <td>{{cart.invoiceQuantity}}</td>
                             <td>
                                 <input type="number" [value]="cart.approvedQuantity"
                                     (keyup)="addApprovedAmount(invoice.id,cart.id,approvedAmount.value)"

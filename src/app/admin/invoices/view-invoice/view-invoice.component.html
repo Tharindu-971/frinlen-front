@@ -238,7 +238,7 @@
                         <tr>
                             <td>PRODUCT CODE</td>
                             <td colspan="2">DESCRIPTION</td>
-                            <td >VOLUMN</td>
+                            <td >VOLUME</td>
                             <td>QTY</td>
                             <td>RATE PER BOTTLE</td>
                             <td>LITERS</td>
@@ -248,10 +248,13 @@
                             <td >{{cart.inventory.code}}</td>
                             <td colspan="2">{{cart.inventory.name}}</td>
                             <td>{{cart.inventory.unitLiters}} ml</td>
-                            <td>{{cart.approvedQuantity}}</td>
+                            <td *ngIf="invoice.isApproved">{{cart.approvedQuantity}}</td>
+                            <td *ngIf="!invoice.isApproved">{{cart.invoiceQuantity}}</td>
                             <td>{{cart.inventory.sellingPrice}}</td>             
-                            <td>{{cart.approvedQuantity*(cart.inventory.unitLiters/1000)| number : '1.3-3'}} L</td>
-                            <td>Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity | number : '1.2-2'}}</td>
+                            <td *ngIf="invoice.isApproved">{{cart.approvedQuantity*(cart.inventory.unitLiters/1000)| number : '1.3-3'}} L</td>
+                            <td *ngIf="!invoice.isApproved">{{cart.invoiceQuantity*(cart.inventory.unitLiters/1000)| number : '1.3-3'}} L</td>
+                            <td *ngIf="invoice.isApproved">Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity | number : '1.2-2'}}</td>
+                            <td *ngIf="!invoice.isApproved">Rs. {{cart.inventory.sellingPrice*cart.invoiceQuantity | number : '1.2-2'}}</td>
                         </tr>
                         <tr>
                             <td colspan="5"></td>
@@ -395,5 +398,14 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
     </div>
 </div>
