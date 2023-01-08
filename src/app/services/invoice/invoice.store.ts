@@ -172,10 +172,11 @@ export class InvoiceStore{
         const invoices = this.subject.getValue();
         const invoice = invoices.find(invoice => invoice.id==invoId)
         if(invoice){
-          const invoiceQty =invoice.invoiceQuantities.find(qty =>qty.id == qtyId)
+          const invoiceQty = invoice.invoiceQuantities.find(qty =>qty.id == qtyId)
           if(invoiceQty){
             invoiceQty.approvedQuantity = Number(value);
-            this.invoiceSubject.next(invoice)
+            const updatedInvoice = this.calTotal(invoice,invoice.invoiceQuantities)
+            this.invoiceSubject.next(updatedInvoice)
 
             const index = invoices.findIndex(invoice => invoice.id == invoId);
 
@@ -262,8 +263,8 @@ export class InvoiceStore{
         invoice.totalLiters =0;
 
         for(let i = 0 ;i<stocks.length;i++){
-            invoice.subTotal += Math.round((stocks[i].inventory.sellingPrice*stocks[i].inventory.approvedQty) * 100) / 100;
-            invoice.totalLiters += Math.round((stocks[i].inventory.unitLiters*stocks[i].inventory.approvedQty) * 100) / 100;
+          invoice.subTotal += Math.round((stocks[i].inventory.sellingPrice*stocks[i].approvedQuantity) * 100) / 100;
+          invoice.totalLiters += Math.round((stocks[i].inventory.unitLiters*stocks[i].approvedQuantity) * 100) / 100;
 
             console.log("fffffffffff1selli",stocks[i].inventory.sellingPrice)
             console.log("fffffffffff2appro",stocks[i].inventory.approvedQuantity)

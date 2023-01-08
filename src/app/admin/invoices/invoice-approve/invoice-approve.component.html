@@ -246,13 +246,13 @@
                                 <div class="help-block has-error"></div>
                             </td>
                             <td>{{cart.inventory.sellingPrice}}</td>             
-                            <td>{{cart.approvedQuantity*(cart.inventory.unitLiters/1000)| number : '1.2-2'}} L</td>
+                            <td>{{cart.approvedQuantity*(cart.inventory.unitLiters/1000)| number : '1.3-3'}} L</td>
                             <td>Rs. {{cart.inventory.sellingPrice*cart.approvedQuantity | number : '1.2-2'}}</td>
                         </tr>
                         <tr>
                             <td colspan="5"></td>
                             <td >Total Liters</td>
-                            <td colspan="2">{{(invoice.totalLiters/1000) | number : '1.2-2'}} L</td>
+                            <td colspan="2">{{(invoice.totalLiters/1000) | number : '1.3-3'}} L</td>
 
                            
                         </tr>
