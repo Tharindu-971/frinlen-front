@@ -33,7 +33,7 @@
                     <li class="nav-item dropdown header-profile" *ngIf="authStore.user$ | async as user">
                         <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
                             <div class="header-info me-3">
-                                <span class="fs-18 font-w500 text-end">Admin</span>
+                                <span class="fs-18 font-w500 text-end">{{user.firstName}}</span>
                                 <small class="text-end fs-14 font-w400">{{user.email}}</small>
                             </div>
                             <!-- <img src="assets/images/profile/pic1.jpg" width="20" alt=""> -->
