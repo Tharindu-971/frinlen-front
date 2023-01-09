@@ -27,3 +27,11 @@ td[rowspan] {
     border: none !important;
     padding: 0 !important;
 }
+
+.test1{
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+}
