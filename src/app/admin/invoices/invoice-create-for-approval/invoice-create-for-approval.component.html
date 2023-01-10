@@ -15,7 +15,15 @@
                         <div class="mb-3">
                             <label class="text-label form-label" for="validationCustomUsername">Search Item</label>
                             <div class="input-group">
-                                <p-autoComplete  autocomplete [showClear]="true" [suggestions]="stocks" (onSelect)="addToCart($event)" (completeMethod)="search($event)" field="name"></p-autoComplete>
+                                <!-- <p-autoComplete  autocomplete [showClear]="true" [suggestions]="stocks" (onSelect)="addToCart($event)" (completeMethod)="search($event)" field="name"></p-autoComplete> -->
+                                <p-autoComplete  [suggestions]="stocks" (completeMethod)="search($event)" field="name" [showClear]="true">
+                                    <ng-template let-stock pTemplate="item">
+                                        <div class="country-item">
+                                            
+                                            <div>{{stock.name}}-{{stock.unitLiters}} ml</div>
+                                        </div>
+                                    </ng-template>
+                                </p-autoComplete>
                             </div>
                         </div>
                         <h4 class="d-flex justify-content-between align-items-center">
