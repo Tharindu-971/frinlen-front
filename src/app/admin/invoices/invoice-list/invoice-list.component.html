@@ -20,8 +20,8 @@
         </div>
         <div class="card-body"*ngIf="(invoices$|async) as invoices" >
             <div class="table-responsive" *ngIf="(user$|async) as user">
-                <p-table #dt3 [value]="invoices" dataKey="id"
-        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+                <p-table #dt3 [value]="invoices" dataKey="id" [sortOrder]="-1"
+        [rows]="10" [showCurrentPageReport]="true" sortField="id" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
         [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [globalFilterFields]="['name','number','customer.name','status']" [tableStyle]="{'min-width':'75rem'}">
         <ng-template pTemplate="caption">

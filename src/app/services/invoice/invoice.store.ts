@@ -45,7 +45,7 @@ export class InvoiceStore{
     
       createInvoice(invoice:Invoice):Observable<any>{
         const invoices = this.subject.getValue();
-        // invoices.push(invoice);
+        
         // this.subject.next(invoices);
         const sava$= this.http.post<any>(`${environment.apiUrl}/invoices`,invoice)
           .pipe(
@@ -53,6 +53,9 @@ export class InvoiceStore{
               console.log("res",response)
               if(response){
                   this.toastr.success("Invoice Created Successfully")
+                  invoices.push(response);
+                  console.log("invocieeee : ",invoices)
+                  this.subject.next(invoices);
                 }else{
                   this.toastr.warning("Could not Create Invoice")
                 }

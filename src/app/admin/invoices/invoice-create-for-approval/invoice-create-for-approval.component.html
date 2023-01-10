@@ -16,7 +16,7 @@
                             <label class="text-label form-label" for="validationCustomUsername">Search Item</label>
                             <div class="input-group">
                                 <!-- <p-autoComplete  autocomplete [showClear]="true" [suggestions]="stocks" (onSelect)="addToCart($event)" (completeMethod)="search($event)" field="name"></p-autoComplete> -->
-                                <p-autoComplete  [suggestions]="stocks" (completeMethod)="search($event)" field="name" [showClear]="true">
+                                <p-autoComplete  [suggestions]="stocks" (completeMethod)="search($event)" (onSelect)="addToCart($event)" field="name" [showClear]="true" >
                                     <ng-template let-stock pTemplate="item">
                                         <div class="country-item">
                                             
