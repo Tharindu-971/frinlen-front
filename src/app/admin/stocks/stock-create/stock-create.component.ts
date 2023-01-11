@@ -77,6 +77,7 @@ export class StockCreateComponent implements OnInit{
 
   cancel(){
     this.stockForm.reset();
+    this.router.navigate(['/protected/stocks'])
   }
 
 }
