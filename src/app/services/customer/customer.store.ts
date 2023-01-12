@@ -43,6 +43,10 @@ export class CustomerStore {
     this.loadingService.showLoaderUntillCompleted(loadCustomers$).subscribe();
   }
 
+  getAllCustomers(){
+    return this.http.get<Customer[]>(`${environment.apiUrl}/customers`).subscribe(data => data);
+  }
+
   createCustomer(customer:Customer):Observable<any>{
     const customers = this.subject.getValue();
     customers.push(customer);

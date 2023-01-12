@@ -41,6 +41,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.component';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { TextTransformPipe } from '../text.pipe';
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { TextTransformPipe } from '../text.pipe';
     ReactiveFormsModule,
     NgxPrintModule,
     DataTablesModule,
+    CheckboxModule,
     TableModule,
     CalendarModule,
 		SliderModule,

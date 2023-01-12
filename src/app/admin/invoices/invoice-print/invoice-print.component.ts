@@ -21,6 +21,7 @@ export class InvoicePrintComponent implements OnInit{
   datePipe: any;
   lorryNo:string = '';
   ctsNo:string= '';
+  checked: boolean = false;
 
   constructor(private invoiceStore:InvoiceStore,private route:ActivatedRoute,private authStore:AuthStore){
     //this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
