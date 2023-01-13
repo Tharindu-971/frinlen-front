@@ -238,7 +238,7 @@ export class InvoiceStore{
           map(response =>{
             
             if(response){
-              console.log("res drews :",response)
+              console.log("res dress :",response)
               if(response.approved){
                 this.toastr.success("Invoice Approved Successfully")
               }else{
