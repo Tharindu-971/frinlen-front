@@ -3,17 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './guard/auth.guard';
 import { LoginComponent } from './login/login.component';
+import { SuspendedComponent } from './suspended/suspended.component';
 
 const routes: Routes = [
 
-  { path: 'login',component:LoginComponent},
-  {
-    path: 'protected',
-    canActivate:[AuthGuard],
-    loadChildren: () =>
-      import('./admin/admin.module').then((m) => m.AdminModule)
-  },
-  {path:'',redirectTo:'login',pathMatch:'full'}
+  // { path: 'login',component:LoginComponent},
+  // {
+  //   path: 'protected',
+  //   canActivate:[AuthGuard],
+  //   loadChildren: () =>
+  //     import('./admin/admin.module').then((m) => m.AdminModule)
+  // },
+  // {path:'',redirectTo:'login',pathMatch:'full'}
+
+  //when suspended
+  {path:'suspended',component:SuspendedComponent},
+  {path:'**',redirectTo:'suspended',pathMatch:'full'}
 ];
 
 @NgModule({
