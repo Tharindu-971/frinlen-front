@@ -13,6 +13,7 @@ import { authInterceptorProviders } from './interceptor/auth.interceptor';
 import { JwtModule } from "@auth0/angular-jwt";
 import { NgxPrintModule } from 'ngx-print';
 import {DataTablesModule} from 'angular-datatables';
+import { SuspendedComponent } from './suspended/suspended.component';
 
 
 
@@ -21,7 +22,8 @@ import {DataTablesModule} from 'angular-datatables';
   declarations: [
     AppComponent,
     LoginComponent,
-    LoadingComponent
+    LoadingComponent,
+    SuspendedComponent
 
 
   ],
