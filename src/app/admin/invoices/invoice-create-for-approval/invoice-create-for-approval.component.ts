@@ -31,6 +31,8 @@ export class InvoiceCreateForApprovalComponent implements OnInit{
 
   invoiceForm:FormGroup;
   stockForm:FormGroup;
+
+  myDate = new Date();
   
   constructor(private invoiceStore:InvoiceStore,
     private stockStore:StockStore,
@@ -131,6 +133,9 @@ export class InvoiceCreateForApprovalComponent implements OnInit{
 
   submit(invoice:Invoice){
     invoice.status="PENDING"
+    invoice.createDate = this.myDate;
+    invoice.updatedDay = this.myDate;
+    invoice.deliveryDate = this.myDate;
     invoice.subTotal = Math.round((invoice.subTotal) * 100) / 100;
     this.invoiceStore.createInvoice(invoice).subscribe(()=>this.tempInvoiceStore.reset())
     this.router.navigate(['/protected/invoices/'])

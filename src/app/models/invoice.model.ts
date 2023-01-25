@@ -22,4 +22,7 @@ export interface Invoice{
     agent:Agent;
     lorryNo?:string;
     ctsNo?:string;
+    createDate:Date;
+    deliveryDate :Date;
+    updatedDay:Date;
 }

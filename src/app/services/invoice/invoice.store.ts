@@ -72,6 +72,40 @@ export class InvoiceStore{
           
           return sava$;
       }
+
+
+
+      updateDeliveryDate(invoice:Invoice):Observable<any>{
+        const invoices = this.subject.getValue();
+        
+        // this.subject.next(invoices);
+        const sava$= this.http.post<any>(`${environment.apiUrl}/invoices/update/${invoice.id}`,invoice)
+          .pipe(
+            map(response=>{
+              console.log("res update invoice",response)
+              if(response){
+                  this.toastr.success("Invoice Created Successfully")
+                  invoices.push(response);
+                  console.log("invocieeee : ",invoices)
+                  this.subject.next(invoices);
+                }else{
+                  this.toastr.warning("Could not Create Invoice")
+                }
+              }
+            ),
+            catchError(err=>{
+              this.toastr.error("Could not Create Invoice");
+              console.log("InvoiceStore:createInvoice",err)
+              return throwError(err)
+            })
+          )
+
+          this.loadInvoices();
+          
+          return sava$;
+      }
+
+
     
       updateInvoice(id:number,invoice:Partial<Invoice>):Observable<any>{
         const invoices = this.subject.getValue();

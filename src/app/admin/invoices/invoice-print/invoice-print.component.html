@@ -479,7 +479,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="btn-group d-flex align-items-end">
-                                <button type="button" class="btn  btn-primary btn-lg btn-block" printSectionId="demo1"
+                                <button type="button" (click)="updateInvoice(invoice)" class="btn  btn-primary btn-lg btn-block" printSectionId="demo1"
                                     ngxPrint [printTitle]="invoice.id.toString()" [useExistingCss]="true">Print</button>
 
                             </div>

@@ -36,7 +36,11 @@ export class InvoicePrintComponent implements OnInit{
   ngOnInit(): void {
     
     this.invoiceStore.getInvoiceById(Number(this.route.snapshot.paramMap.get('id')));
+    
     this.invoice$ = this.invoiceStore.invoice$;
+    this.invoice$.subscribe(data=> {
+      this.deliveryDate = new Date(data.deliveryDate)
+    })
   }
   onSeleceted(id:any,invoice:Invoice){
     console.log("iddd: ",id)
@@ -47,5 +51,11 @@ export class InvoicePrintComponent implements OnInit{
     this.lorryNo = lorry.number;
     this.ctsNo = lorry.ctsNo;
     this.invoiceStore.addLorry(invoice.id,invoice);
+  }
+
+  updateInvoice(invoice:Invoice){
+    console.log("delivery Date : ",this.deliveryDate)
+    invoice.deliveryDate = this.deliveryDate;
+    this.invoiceStore.updateDeliveryDate(invoice).subscribe();
   }
 }

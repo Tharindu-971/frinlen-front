@@ -26,7 +26,8 @@ export class ViewInvoiceComponent {
     this.invoiceStore.getInvoiceById(Number(this.route.snapshot.paramMap.get('id')));
     this.invoice$ = this.invoiceStore.invoice$;
     let va;
-    this.invoice$.subscribe(data=>va=data);
+    this.invoice$.subscribe(data=>{va=data
+    this.deliveryDate = new Date(data.deliveryDate)});
     console.log("view:",va)
   }
 }
