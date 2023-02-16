@@ -45,11 +45,12 @@
         </ng-template>
                     <ng-template pTemplate="header">
                         <tr>
-                            <th style="width:22%">Code</th>
+                            <th style="width:18%">Code</th>
                             <th style="width:22%">Name</th>
-                            <th style="width:22%">Price</th>
-                            <th style="width:22%">Quantity</th>
-                            <th style="width:22%">Status</th>
+                            <th style="width:15%">Price</th>
+                            <th style="width:15%">Quantity</th>
+                            <th style="width:20%">Status</th>
+                            <th style="width:10%">Action</th>
                         </tr>
                         <tr>
                             <th>
@@ -72,6 +73,7 @@
                                     </ng-template>
                                 </p-columnFilter>
                             </th>
+                            <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
@@ -82,6 +84,9 @@
                             <td>{{product.quantity}}</td>
                             
                             <td><span [class]="'product-badge status-' + product.status.toLowerCase()">{{product.status}}</span></td>
+                            <td>
+                                <a  [routerLink]="['/protected/stocks/','edit',product.id]"  class="badge light badge-info">Edit<span class="ms-1 ml-2 fa fa-edit"></span></a>
+                            </td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="emptymessage">

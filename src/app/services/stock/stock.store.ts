@@ -83,7 +83,7 @@ export class StockStore {
                         if (response.statusCodeValue == 200) {
                             this.toastr.success("Stock Created Successfully")
                         } else {
-                            this.toastr.warning("Could not Create Stock")
+                            this.toastr.info("Stock Update Successfully")
                         }
                     }
 
@@ -117,6 +117,21 @@ export class StockStore {
                     return throwError(err)
                 })
             )
+    }
+
+    getStockById(id:number):Stock {
+        
+        const stocks = this.subject.getValue();
+        console.log("stockesss : ",stocks)
+        if(!(stocks.length>0)){
+            this.loadStocks();
+            console.log("ssss",this.subject.getValue())
+        }
+        const index = stocks.findIndex(s=>s.id===id);
+        const stock:Stock = stocks[index];
+        console.log("Stock : ", stock)
+        return stock;
+
     }
     searchStock(value:string){
         

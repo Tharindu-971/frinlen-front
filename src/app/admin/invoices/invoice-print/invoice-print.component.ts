@@ -40,6 +40,7 @@ export class InvoicePrintComponent implements OnInit{
     this.invoice$ = this.invoiceStore.invoice$;
     this.invoice$.subscribe(data=> {
       this.deliveryDate = new Date(data.deliveryDate)
+      this.myDate = new Date(data.deliveryDate)
     })
   }
   onSeleceted(id:any,invoice:Invoice){

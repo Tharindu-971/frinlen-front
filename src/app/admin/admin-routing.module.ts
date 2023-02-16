@@ -17,6 +17,7 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.component';
 import { StockCreateComponent } from './stocks/stock-create/stock-create.component';
 import { StockListComponent } from './stocks/stock-list/stock-list.component';
+import { StockUpdateComponent } from './stocks/stock-update/stock-update.component';
 import { StocksComponent } from './stocks/stocks.component';
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
           role: ['ROLE_ADMIN','ROLE_USER']
      }, children: [
           { path: 'create', component: StockCreateComponent },
+          { path: 'edit/:id', component: StockUpdateComponent },
           { path: '', component: StockListComponent }
         ]
       },

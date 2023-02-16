@@ -27,7 +27,9 @@ export class ViewInvoiceComponent {
     this.invoice$ = this.invoiceStore.invoice$;
     let va;
     this.invoice$.subscribe(data=>{va=data
-    this.deliveryDate = new Date(data.deliveryDate)});
+    this.deliveryDate = new Date(data.deliveryDate)
+    this.myDate = new Date(data.deliveryDate)
+  });
     console.log("view:",va)
   }
 }

@@ -42,6 +42,7 @@ import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.compo
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { TextTransformPipe } from '../text.pipe';
 import {CheckboxModule} from 'primeng/checkbox';
+import { StockUpdateComponent } from './stocks/stock-update/stock-update.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     InvoiceApproveComponent,
     InvoicePrintComponent,
     ViewInvoiceComponent,
-    TextTransformPipe
+    TextTransformPipe,
+    StockUpdateComponent
   ],
   imports: [
     CommonModule,
