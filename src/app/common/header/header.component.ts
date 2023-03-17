@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(public authStore:AuthStore,private toastr:ToastrService,private router:Router) { }
 
   ngOnInit(): void {
-    this.toastr.warning('This service subscription will suspend at 3.00pm due to payment error.','Suspended',{positionClass: 'toast-bottom-left',
+    this.toastr.warning('Due to the late payment system will be terminated within 24 hours kindly settle the late payment to continue the service','Suspended',{positionClass: 'toast-bottom-left',
     timeOut:0,
     extendedTimeOut:0,
     tapToDismiss: false})
